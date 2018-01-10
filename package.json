@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/winkjs/wink-lookup-ner/issues"
   },
-  "homepage": "http://winkjs.org/wink-lookup-ner/",
+  "homepage": "http://winkjs.org/",
   "devDependencies": {
     "chai": "^4.1.0",
     "coveralls": "^3.0.0",
