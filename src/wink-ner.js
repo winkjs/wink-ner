@@ -63,6 +63,8 @@ var ner = function () {
    * [`tag`](http://winkjs.org/wink-tokenizer/#defineconfig) of tokens that should
    * be ignored during entity detection. Note: *`number` and `word` tags can never
    * be ignored.
+   * @param {string[]} [config.ignoreDiacritics=true] a `true` ensures that diacritic
+   * marks are ignored, whereas `false` will ensure that they are not ignored.
    * @return {bolean} always `true`.
    * @throws {error} if `valuesToIgnore` is not an array of strings.
    * @throws {error} if `tagsToIgnore` is not an array of strings.
