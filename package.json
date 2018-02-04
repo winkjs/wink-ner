@@ -39,5 +39,9 @@
     "mocha": "^5.0.0",
     "mocha-lcov-reporter": "^1.3.0"
   },
-  "runkitExampleFilename": "./runkit/example.js"
+  "runkitExampleFilename": "./runkit/example.js",
+  "dependencies": {
+    "wink-helpers": "^1.3.0",
+    "wink-lemmatizer": "^1.0.0"
+  }
 }
