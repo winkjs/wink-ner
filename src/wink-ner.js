@@ -24,6 +24,19 @@
 var singularize = require( 'wink-lemmatizer' ).lemmatizeNoun;
 var helpers = require( 'wink-helpers' );
 
+// ### ner
+/**
+ *
+ * Creates an instance of **`wink-ner`**.
+ *
+ * @return {methods} object conatining set of API methods for named entity
+ * training, recognition, etc.
+ * @example
+ * // Load wink ner.
+ * var tagger = require( 'wink-ner' );
+ * // Create your instance of wink ner.
+ * var myNER = ner();
+*/
 var ner = function () {
   // Returned!
   var methods = Object.create( null );
