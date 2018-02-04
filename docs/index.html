@@ -33,6 +33,36 @@
                 
                 </li>
               
+                
+                <li><a
+                  href='#defineconfig'
+                  class="">
+                  defineConfig
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#learn'
+                  class="">
+                  learn
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#recognize'
+                  class="">
+                  recognize
+                  
+                </a>
+                
+                </li>
+              
             </ul>
           </div>
           <div class='mt1 h6 quiet'>
@@ -72,6 +102,413 @@ Software Foundation, version 3 of the License.</p>
   
 </section>
 </div>
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='defineconfig'>
+      defineConfig
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Configures the property/value pairs of tokens that should be ignored if
+they are found between tokens during entity detection. For example, ignoring
+<code>'punctuation'</code> value for <code>'tag'</code> property will ensures '-' or '.' etc
+are ignored and correctly detect kg and k.g. as kg (kilogram symbol) or
+Guinea-Bissau and Guinea Bissau as Guinea-Bissau (a country in West Africa).</p>
+
+
+  <div class='pre p1 fill-light mt0'>defineConfig(config: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): bolean</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>config</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
+	    — defines the 
+<code>values</code>
+ and/or 
+<code>tags</code>
+ of the tokens
+to ignore during entity detection. Note if any one of them matches, the token
+will be ignored.
+<p><em>An empty config object is equivalent to setting all properties to <code>undefined.</code></em></p>
+<p>The table below details the 2 properties:</p>
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>config.valuesToIgnore</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>
+  
+    (default <code>undefined</code>)
+  </td>
+  <td class='break-word'><span>contains comma separated
+
+<code>value</code>
+ of tokens that should be ignored during entity detection.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>config.tagsToIgnore</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>
+  
+    (default <code>[&#39;punctuation&#39;]</code>)
+  </td>
+  <td class='break-word'><span>contains comma separated
+
+<a href="http://winkjs.org/wink-tokenizer/#defineconfig"><code>tag</code></a>
+ of tokens that should
+be ignored during entity detection. Note: *
+<code>number</code>
+ and 
+<code>word</code>
+ tags can never
+be ignored.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>bolean</code>:
+        always 
+<code>true</code>
+.
+
+      
+    
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Throws</div>
+    <ul>
+      
+        <li><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error">error</a>: if 
+<code>valuesToIgnore</code>
+ is not an array of strings.
+</li>
+      
+        <li><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error">error</a>: if 
+<code>tagsToIgnore</code>
+ is not an array of strings.
+</li>
+      
+        <li><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error">error</a>: if 
+<code>tagsToIgnore</code>
+ contains an invalid tag.
+</li>
+      
+    </ul>
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='learn'>
+      learn
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Learns the entities that must be detected via <code>recognize()/predict()</code> API
+calls in a sentence that has been already tokenized either using
+<a href="https://www.npmjs.com/package/wink-tokenizer">wink-tokenizer</a> or follows
+it's token format.</p>
+<p>It can be use to learn or update learnings incrementally; but it can not be
+used to unlearn or delete one or more entities.</p>
+<p>If duplicated entity definitions are enountered then all the entries except
+the <strong>last one</strong> are ignored.</p>
+
+
+  <div class='pre p1 fill-light mt0'>learn(entities: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>entities</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>)</code>
+	    — where each element defines an entity via
+two mandatory properties viz. 
+<code>text</code>
+ and 
+<code>entityType</code>
+ as described later.
+Note if an element is 
+<em>not an object</em>
+ or 
+<em>does not contain the mandatory
+properties,</em>
+ it is ignored.
+<p>In addition to these two properties, you may optionally defined two more
+properties as described in the table below. Apart from these <strong>4 properties</strong>,
+if any additional property is defined, the same is copied to the output
+entity token as-is for consumption by your code to simplify processing.</p>
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>entities[].text</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>that must be detected as entity and may
+consist of more than one word; for example, 
+<strong><code>India</code></strong>
+ or 
+<strong><code>United Kindom.</code></strong>
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>entities[].entityType</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>type of the entity; for example
+
+<strong><code>country</code></strong>
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>entities[].uid</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  
+    (default <code>undefined</code>)
+  </td>
+  <td class='break-word'><span>unique id for the entity; example
+usecase of 
+<code>uid</code>
+ is using it to access more properties of the entity from a
+database. If it is 
+<code>undefined</code>
+ then it is automatically generated by joining
+the key words of the detected entity by underscore (_). For example, 
+<code>'india'</code>
+
+or 
+<code>'united_kingdom'.</code>
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>entities[].value</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  
+    (default <code>undefined</code>)
+  </td>
+  <td class='break-word'><span>that is assigned to the value
+property of the token; if 
+<code>undefined</code>
+ then it is equal to the 
+<strong>value</strong>
+
+of the token in case of uni-word entities; for multi-word entities, it is
+generated automatically by joining the key words of the entries by space
+character. For example, 
+<code>'india'</code>
+ or 
+<code>'united kingdom'.</code>
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
+        of actual entities learned.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='recognize'>
+      recognize
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Recognizes entities in the input <code>tokens.</code> Any token(s), which is recognized
+as an entity, will automatically receive the properties that have been defined
+for the <em>detected entity</em> using <a href="#learn"><code>learn()</code></a>. If a set of tokens together
+are recognized as a single entity, then they are merged in to a single
+token; the merged tokens <code>value</code> property becomes the concatenation of all
+the <code>values</code> from merged tokens, separated by space.</p>
+
+
+  <div class='pre p1 fill-light mt0'>recognize(tokens: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>)</code>
+	    — tokenized either using
+
+<a href="https://www.npmjs.com/package/wink-tokenizer">wink-tokenizer</a>
+ or follow
+it's standards.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>></code>:
+        of updated 
+<code>tokens.</code>
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
           
         
       </div>
