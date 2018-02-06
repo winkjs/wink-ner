@@ -250,7 +250,7 @@ are ignored and correctly detect kg and k.g. as kg (kilogram symbol) or
 Guinea-Bissau and Guinea Bissau as Guinea-Bissau (a country in West Africa).</p>
 
 
-  <div class='pre p1 fill-light mt0'>defineConfig(config: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): bolean</div>
+  <div class='pre p1 fill-light mt0'>defineConfig(config: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
   
   
 
@@ -275,7 +275,7 @@ Guinea-Bissau and Guinea Bissau as Guinea-Bissau (a country in West Africa).</p>
  of the tokens
 to ignore during entity detection. Note if any one of them matches, the token
 will be ignored.
-<p><em>An empty config object is equivalent to setting all properties to <code>undefined.</code></em></p>
+<p><em>An empty config object is equivalent to setting default configuration.</em></p>
 <p>The table below details the 2 properties:</p>
 
           </div>
@@ -316,12 +316,12 @@ will be ignored.
 
 <a href="http://winkjs.org/wink-tokenizer/#defineconfig"><code>tag</code></a>
  of tokens that should
-be ignored during entity detection. Note: *
+be ignored during entity detection. Duplicate and invaid tags, if any, are ignored.
+Note: 
 <code>number</code>
  and 
 <code>word</code>
- tags can never
-be ignored.
+ tags can never be ignored.
 </span></td>
 </tr>
 
@@ -356,10 +356,8 @@ marks are ignored, whereas
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>bolean</code>:
-        always 
-<code>true</code>
-.
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
+        a copy of configuration defined.
 
       
     
@@ -379,14 +377,29 @@ marks are ignored, whereas
  is not an array of strings.
 </li>
       
-        <li><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error">error</a>: if 
-<code>tagsToIgnore</code>
- contains an invalid tag.
-</li>
-      
     </ul>
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Do not ignore anything!</span>
+myNER.defineConfig( { <span class="hljs-attr">tagsToIgnore</span>: [], <span class="hljs-attr">ignoreDiacritics</span>: <span class="hljs-literal">false</span> } );
+<span class="hljs-comment">// -&gt; { tagsToIgnore: [], valuesToIgnore: [], ignoreDiacritics: false }</span>
+
+<span class="hljs-comment">// Ignore only '-' and '.'</span>
+myNER.defineConfig( {
+  <span class="hljs-attr">tagsToIgnore</span>: [],
+  <span class="hljs-attr">valuesToIgnore</span>: [ <span class="hljs-string">'-'</span>, <span class="hljs-string">'.'</span> ],
+  <span class="hljs-attr">ignoreDiacritics</span>: <span class="hljs-literal">false</span>
+} );
+<span class="hljs-comment">// -&gt; {</span>
+<span class="hljs-comment">//      tagsToIgnore: [],</span>
+<span class="hljs-comment">//      valuesToIgnore: [ '-', '.' ],</span>
+<span class="hljs-comment">//      ignoreDiacritics: false</span>
+<span class="hljs-comment">//    }</span></pre>
+    
   
 
   

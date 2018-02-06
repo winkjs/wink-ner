@@ -37,7 +37,8 @@
     "istanbul": "^0.4.5",
     "jshint": "^2.9.5",
     "mocha": "^5.0.0",
-    "mocha-lcov-reporter": "^1.3.0"
+    "mocha-lcov-reporter": "^1.3.0",
+    "wink-tokenizer": "^2.1.0"
   },
   "runkitExampleFilename": "./runkit/example.js",
   "dependencies": {

@@ -67,24 +67,51 @@ var ner = function () {
    * to ignore during entity detection. Note if any one of them matches, the token
    * will be ignored.
    *
-   * *An empty config object is equivalent to setting all properties to `undefined.`*
+   * *An empty config object is equivalent to setting default configuration.*
    *
    * The table below details the 2 properties:
    * @param {string[]} [config.valuesToIgnore=undefined] contains comma separated
    * `value` of tokens that should be ignored during entity detection.
    * @param {string[]} [config.tagsToIgnore=[ 'punctuation' ]] contains comma separated
    * [`tag`](http://winkjs.org/wink-tokenizer/#defineconfig) of tokens that should
-   * be ignored during entity detection. Note: *`number` and `word` tags can never
-   * be ignored.
+   * be ignored during entity detection. Duplicate and invaid tags, if any, are ignored.
+   * Note: `number` and `word` tags can never be ignored.
    * @param {string[]} [config.ignoreDiacritics=true] a `true` ensures that diacritic
    * marks are ignored, whereas `false` will ensure that they are not ignored.
-   * @return {bolean} always `true`.
+   * @return {object} a copy of configuration defined.
    * @throws {error} if `valuesToIgnore` is not an array of strings.
    * @throws {error} if `tagsToIgnore` is not an array of strings.
-   * @throws {error} if `tagsToIgnore` contains an invalid tag.
    * @example
+   * // Do not ignore anything!
+   * myNER.defineConfig( { tagsToIgnore: [], ignoreDiacritics: false } );
+   * // -> { tagsToIgnore: [], valuesToIgnore: [], ignoreDiacritics: false }
+   *
+   * // Ignore only '-' and '.'
+   * myNER.defineConfig( {
+   *   tagsToIgnore: [],
+   *   valuesToIgnore: [ '-', '.' ],
+   *   ignoreDiacritics: false
+   * } );
+   * // -> {
+   * //      tagsToIgnore: [],
+   * //      valuesToIgnore: [ '-', '.' ],
+   * //      ignoreDiacritics: false
+   * //    }
   */
   var defineConfig = function ( config ) {
+    // Check if `config` is a valid object.
+    if ( !helpers.validate.isObject( config ) ) {
+      throw Error( 'wink-ner/defineConfig: config must be an object, instead found: ' + JSON.stringify( config ) );
+    }
+    // Check if `valuesToIgnore` is an array provided it is a truthy.
+    if ( config.valuesToIgnore && !helpers.validate.isArray( config.valuesToIgnore ) ) {
+      throw Error( 'wink-ner/defineConfig: valuesToIgnore must be an array, instead found: ' + JSON.stringify( config.valuesToIgnore ) );
+    }
+    // Check if `tagsToIgnore` is an array provided it is a truthy.
+    if ( config.tagsToIgnore && !helpers.validate.isArray( config.tagsToIgnore ) ) {
+      throw Error( 'wink-ner/defineConfig: valuesToIgnore must be an array, instead found: ' + JSON.stringify( config.tagsToIgnore ) );
+    }
+
     var validTags = Object.create( null );
     // Valid tags to exclude `number` and `word` tags.
     validTags.emoticon = true;
@@ -98,9 +125,46 @@ var ner = function () {
     validTags.url = true;
     validTags.unknown = true;
 
-    cfg = config;
+    cfg.tagsToIgnore = Object.create( null );
+    cfg.valuesToIgnore = Object.create( null );
+    if ( Object.keys( config ).length === 0 ) {
+      // Empty `config` means, restore default configuration!
+      cfg.tagsToIgnore.punctuation = true;
+      cfg.ignoreDiacritics = true;
+    } else {
+      // Configure diacritics.
+      if ( config.ignoreDiacritics !== undefined ) cfg.ignoreDiacritics =  !!config.ignoreDiacritics;
 
-    return cfg;
+      // Configure tags to ignore.
+      let ignore = config.tagsToIgnore;
+      if ( ignore ) {
+        for ( let i = 0; i < ignore.length; i += 1 ) {
+          const key = ignore[ i ];
+          if ( !key && ( typeof key !== 'string' ) ) {
+            throw Error( 'wink-ner/defineConfig: tagsToIgnore must contain strings, instead found: ' + JSON.stringify( ignore ) );
+          }
+          // Include only valid tags; others are ignored.
+          if ( validTags[ key ] ) cfg.tagsToIgnore[ key ] = true;
+        }
+      } // if ( !ignore )...
+      // Configure values to ignore.
+      ignore = config.valuesToIgnore;
+      if ( ignore ) {
+        for ( let i = 0; i < ignore.length; i += 1 ) {
+          const key = ignore[ i ];
+          if ( !key && ( typeof key !== 'string' ) ) {
+            throw Error( 'wink-ner/defineConfig: valuesToIgnore must contain strings, instead found: ' + JSON.stringify( ignore ) );
+          }
+          cfg.valuesToIgnore[ key ] = true;
+        }
+      } // if ( !ignore )...
+    }
+
+    return {
+      tagsToIgnore: Object.keys( cfg.tagsToIgnore),
+      valuesToIgnore: Object.keys( cfg.valuesToIgnore ),
+      ignoreDiacritics: cfg.ignoreDiacritics
+    };
   }; // defineConfig()
 
   // ### cloneEntity
