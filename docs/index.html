@@ -243,11 +243,16 @@ training, recognition, etc.
   </div>
   
 
-  <p>Configures the property/value pairs of tokens that should be ignored if
-they are found between tokens during entity detection. For example, ignoring
-<code>'punctuation'</code> value for <code>'tag'</code> property will ensures '-' or '.' etc
-are ignored and correctly detect kg and k.g. as kg (kilogram symbol) or
-Guinea-Bissau and Guinea Bissau as Guinea-Bissau (a country in West Africa).</p>
+  <p>Defines the criteria to ignore one or more
+<a href="http://winkjs.org/wink-tokenizer/"><strong>tokens</strong></a> during entity detection.
+The criteria is specified in terms of array of specific <strong>tags</strong> and/or <strong>values</strong>
+to ignore; this means if any of the listed tag or value is found in a token,
+it is ignored and it’s value is not considered during entity recognition.</p>
+<p>For example by including <code>punctuation</code>  in the array of tags to ignore,
+tokens containing punctuations like <code>-</code> or <code>.</code> will be skipped. This will
+result in recognition of <strong>kg</strong> and <strong>k.g.</strong> as <strong>kg</strong> (kilogram symbol)
+or <strong>Guinea-Bissau</strong> and <strong>Guinea Bissau</strong> as <strong>Guinea-Bissau</strong>
+(a country in West Africa).</p>
 
 
   <div class='pre p1 fill-light mt0'>defineConfig(config: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
@@ -272,11 +277,11 @@ Guinea-Bissau and Guinea Bissau as Guinea-Bissau (a country in West Africa).</p>
 <code>values</code>
  and/or 
 <code>tags</code>
- of the tokens
-to ignore during entity detection. Note if any one of them matches, the token
-will be ignored.
+ to be ignore
+during entity detection. Note if the match occurs in any one of the array,
+the token is ignored.
 <p><em>An empty config object is equivalent to setting default configuration.</em></p>
-<p>The table below details the 2 properties:</p>
+<p>The table below details the properties of <code>config</code> object:</p>
 
           </div>
           
@@ -298,10 +303,10 @@ will be ignored.
   
     (default <code>undefined</code>)
   </td>
-  <td class='break-word'><span>contains comma separated
+  <td class='break-word'><span>contains 
+<strong>values</strong>
 
-<code>value</code>
- of tokens that should be ignored during entity detection.
+to be ignored.
 </span></td>
 </tr>
 
@@ -312,11 +317,10 @@ will be ignored.
   
     (default <code>[&#39;punctuation&#39;]</code>)
   </td>
-  <td class='break-word'><span>contains comma separated
+  <td class='break-word'><span>contains 
+<strong>tags</strong>
 
-<a href="http://winkjs.org/wink-tokenizer/#defineconfig"><code>tag</code></a>
- of tokens that should
-be ignored during entity detection. Duplicate and invaid tags, if any, are ignored.
+to be ignored. Duplicate and invaid tags, if any, are ignored.
 Note: 
 <code>number</code>
  and 

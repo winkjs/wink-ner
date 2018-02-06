@@ -57,24 +57,29 @@ var ner = function () {
   // ### defineConfig
   /**
    *
-   * Configures the property/value pairs of tokens that should be ignored if
-   * they are found between tokens during entity detection. For example, ignoring
-   * `'punctuation'` value for `'tag'` property will ensures '-' or '.' etc
-   * are ignored and correctly detect kg and k.g. as kg (kilogram symbol) or
-   * Guinea-Bissau and Guinea Bissau as Guinea-Bissau (a country in West Africa).
+   * Defines the criteria to ignore one or more
+   * [**tokens**](http://winkjs.org/wink-tokenizer/) during entity detection.
+   * The criteria is specified in terms of array of specific **tags** and/or **values**
+   * to ignore; this means if any of the listed tag or value is found in a token,
+   * it is ignored and it’s value is not considered during entity recognition.
    *
-   * @param {object} config — defines the `values` and/or `tags` of the tokens
-   * to ignore during entity detection. Note if any one of them matches, the token
-   * will be ignored.
+   * For example by including `punctuation`  in the array of tags to ignore,
+   * tokens containing punctuations like `-` or `.` will be skipped. This will
+   * result in recognition of **kg** and **k.g.** as **kg** (kilogram symbol)
+   * or **Guinea-Bissau** and **Guinea Bissau** as **Guinea-Bissau**
+   * (a country in West Africa).
+   *
+   * @param {object} config — defines the `values` and/or `tags` to be ignore
+   * during entity detection. Note if the match occurs in any one of the array,
+   * the token is ignored.
    *
    * *An empty config object is equivalent to setting default configuration.*
    *
-   * The table below details the 2 properties:
-   * @param {string[]} [config.valuesToIgnore=undefined] contains comma separated
-   * `value` of tokens that should be ignored during entity detection.
-   * @param {string[]} [config.tagsToIgnore=[ 'punctuation' ]] contains comma separated
-   * [`tag`](http://winkjs.org/wink-tokenizer/#defineconfig) of tokens that should
-   * be ignored during entity detection. Duplicate and invaid tags, if any, are ignored.
+   * The table below details the properties of `config` object:
+   * @param {string[]} [config.valuesToIgnore=undefined] contains **values**
+   * to be ignored.
+   * @param {string[]} [config.tagsToIgnore=[ 'punctuation' ]] contains **tags**
+   * to be ignored. Duplicate and invaid tags, if any, are ignored.
    * Note: `number` and `word` tags can never be ignored.
    * @param {string[]} [config.ignoreDiacritics=true] a `true` ensures that diacritic
    * marks are ignored, whereas `false` will ensure that they are not ignored.
