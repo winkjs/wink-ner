@@ -437,6 +437,9 @@ it's token format.</p>
 used to unlearn or delete one or more entities.</p>
 <p>If duplicated entity definitions are enountered then all the entries except
 the <strong>last one</strong> are ignored.</p>
+<p>Acronyms must be added with space between each character; for example USA
+should be added as <code>'u s a'</code> — this ensure correct detection of
+<code>U S A</code> or <code>U. S. A.</code> or <code>U.S.A.</code> as <code>USA.</code></p>
 
 
   <div class='pre p1 fill-light mt0'>learn(entities: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>

@@ -244,22 +244,25 @@ var ner = function () {
     if ( wordCounts ) uniWordEntities[ firstWord ].wordCounts = wordCounts;
   }; // addUniWordEntity()
 
-  // ### addMultiWordEntity
+  // ### addUniWordEntity
   /**
    *
    * Process multi-word entity and adds it to `multiWordEntities`.
    *
+   * @param {string} text — property of entity.
    * @param {string[]} words — from entity's text.
    * @param {object} entity — to be added.
    * @return {undefined} nothing!
    * @private
   */
-  var addMultiWordEntity = function ( words, entity ) {
+  var addMultiWordEntity = function ( text, words, entity ) {
     const firstWord = words[ 0 ];
     uniWordEntities[ firstWord ] = uniWordEntities[ firstWord ] || Object.create( null );
     uniWordEntities[ firstWord ].wordCounts = uniWordEntities[ firstWord ].wordCounts || [];
     if ( uniWordEntities[ firstWord ].wordCounts.indexOf( words.length ) === -1 ) uniWordEntities[ firstWord ].wordCounts.push( words.length );
     multiWordEntities[ words.join( ' ' ) ] = cloneEntity( entity );
+    // The expression is a simple arithmatic formulation to detect acronyms.
+    if ( words.length === ( ( text.length + 1 ) / 2 ) ) addUniWordEntity( [ words.join( '' ) ], entity );
   }; // addMultiWordEntity()
 
   // ### learn
@@ -275,6 +278,10 @@ var ner = function () {
    *
    * If duplicated entity definitions are enountered then all the entries except
    * the **last one** are ignored.
+   *
+   * Acronyms must be added with space between each character; for example USA
+   * should be added as `'u s a'` — this ensure correct detection of
+   * `U S A` or `U. S. A.` or `U.S.A.` as `USA.`
    *
    * @param {object[]} entities — where each element defines an entity via
    * two mandatory properties viz. `text` and `entityType` as described later.
@@ -326,7 +333,7 @@ var ner = function () {
         if ( words.length === 1 ) {
           addUniWordEntity( words, entity );
         } else {
-          addMultiWordEntity( words, entity );
+          addMultiWordEntity( text, words, entity );
         }
       }
     }

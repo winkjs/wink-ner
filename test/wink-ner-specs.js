@@ -79,3 +79,24 @@ describe( 'defineConfig() testing', function () {
     expect( n.recognize( t( 'raw-banana is good for health' ) ) ).to.deep.equal( result );
   } );
 } );
+
+describe( 'acronyms', function () {
+  var trainingData = [
+    { text: 'u s a', entityType: 'country', uid: 'usa' },
+    { text: 'u k', entityType: 'country', uid: 'uk' }
+  ];
+  var n = ner();
+  it( 'must detect USA and UK properly', function () {
+    var result = [
+      { entityType: 'country', uid: 'usa', originalSeq: [ 'U', 'S', 'A' ], value: 'u s a', tag: 'word' },
+        { value: 'and', tag: 'word' },
+        { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ], value: 'u k', tag: 'word' },
+        { value: '.', tag: 'punctuation' },
+        { value: 'are', tag: 'word' },
+        { value: 'countries', tag: 'word' },
+        { value: '.', tag: 'punctuation' }
+    ];
+    expect( n.learn( trainingData ) ).to.equal( 2 );
+    expect( n.recognize( t( 'U S A and U. K. are countries.' ) ) ).to.deep.equal( result );
+  } );
+} );
