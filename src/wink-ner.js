@@ -284,6 +284,13 @@ var ner = function () {
    * character. For example, `'india'` or `'united kingdom'.`
    * @return {number} of actual entities learned.
    * @example
+   * var trainingData = [
+   *   { text: 'manchester united', entityType: 'club' },
+   *   { text: 'manchester', entityType: 'city' },
+   *   { text: 'uk', entityType: 'country' }
+   * ];
+   * learn( trainingData );
+   * // -> 3
   */
   var learn = function ( entities ) {
     // Refer to comments for variables `uniWordEntities` & `multiWordEntities`
