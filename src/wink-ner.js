@@ -225,6 +225,25 @@ var ner = function () {
       );
   }; // normalize()
 
+  var addUniWordEntity = function ( words, entity ) {
+    const firstWord = words[ 0 ];
+    let wordCounts;
+    // Process uni-word entity.
+    // Latest value overrides previous value, if any.
+    if ( uniWordEntities[ firstWord ] ) wordCounts = uniWordEntities[ firstWord ].wordCounts;
+    uniWordEntities[ firstWord ] = cloneEntity( entity );
+    if ( wordCounts ) uniWordEntities[ firstWord ].wordCounts = wordCounts;
+  }; // addUniWordEntity()
+
+  var addMultiWordEntity = function ( words, entity ) {
+    const firstWord = words[ 0 ];
+    // Process multi-word entity.
+    uniWordEntities[ firstWord ] = uniWordEntities[ firstWord ] || Object.create( null );
+    uniWordEntities[ firstWord ].wordCounts = uniWordEntities[ firstWord ].wordCounts || [];
+    if ( uniWordEntities[ firstWord ].wordCounts.indexOf( words.length ) === -1 ) uniWordEntities[ firstWord ].wordCounts.push( words.length );
+    multiWordEntities[ words.join( ' ' ) ] = cloneEntity( entity );
+  }; // addMultiWordEntity()
+
   // ### learn
   /**
    *
@@ -269,26 +288,20 @@ var ner = function () {
   var learn = function ( entities ) {
     // Refer to comments for variables `uniWordEntities` & `multiWordEntities`
     // declarations in the beginning.
+    let length = 0;
     for ( let i = 0, imax = entities.length; i < imax; i += 1 ) {
       const entity = entities[ i ];
-      const text = entity.text;
-      const entityType = entity.text;
-      let wordCounts;
+      // Normalize after removing extra white spaces; required for acronyms processing.
+      const text = normalize( ( entity.text ).trim().replace( /\s+/, ' ' ) );
+      const entityType = ( entity.text ).trim().replace( /\s+/, ' ' );
+      // Add if `text` and `entityType` are defined.
       if ( text && entityType ) {
-        const words = normalize( text.trim() ).split( /\s+/ );
-        const firstWord = words[ 0 ];
+        const words = text.split( /\s+/ );
+        length += 1;
         if ( words.length === 1 ) {
-          // Process uni-word entity.
-          // Latest value overrides previous value, if any.
-          if ( uniWordEntities[ firstWord ] ) wordCounts = uniWordEntities[ firstWord ].wordCounts;
-          uniWordEntities[ firstWord ] = cloneEntity( entity );
-          if ( wordCounts ) uniWordEntities[ firstWord ].wordCounts = wordCounts;
+          addUniWordEntity( words, entity );
         } else {
-          // Process multi-word entity.
-          uniWordEntities[ firstWord ] = uniWordEntities[ firstWord ] || Object.create( null );
-          uniWordEntities[ firstWord ].wordCounts = uniWordEntities[ firstWord ].wordCounts || [];
-          if ( uniWordEntities[ firstWord ].wordCounts.indexOf( words.length ) === -1 ) uniWordEntities[ firstWord ].wordCounts.push( words.length );
-          multiWordEntities[ words.join( ' ' ) ] = cloneEntity( entity );
+          addMultiWordEntity( words, entity );
         }
       }
     }
@@ -298,7 +311,7 @@ var ner = function () {
       if ( uniWordEntities[ key ].wordCounts ) uniWordEntities[ key ].wordCounts.sort( helpers.array.descending );
     }
 
-    return entities.length;
+    return length;
   }; // learn()
 
   // ### isIgnorable
