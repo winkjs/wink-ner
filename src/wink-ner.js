@@ -225,19 +225,37 @@ var ner = function () {
       );
   }; // normalize()
 
+  // ### addUniWordEntity
+  /**
+   *
+   * Process uni-word entity and adds it to `uniWordEntities`.
+   *
+   * @param {string[]} words — from entity's text.
+   * @param {object} entity — to be added.
+   * @return {undefined} nothing!
+   * @private
+  */
   var addUniWordEntity = function ( words, entity ) {
     const firstWord = words[ 0 ];
     let wordCounts;
-    // Process uni-word entity.
     // Latest value overrides previous value, if any.
     if ( uniWordEntities[ firstWord ] ) wordCounts = uniWordEntities[ firstWord ].wordCounts;
     uniWordEntities[ firstWord ] = cloneEntity( entity );
     if ( wordCounts ) uniWordEntities[ firstWord ].wordCounts = wordCounts;
   }; // addUniWordEntity()
 
+  // ### addMultiWordEntity
+  /**
+   *
+   * Process multi-word entity and adds it to `multiWordEntities`.
+   *
+   * @param {string[]} words — from entity's text.
+   * @param {object} entity — to be added.
+   * @return {undefined} nothing!
+   * @private
+  */
   var addMultiWordEntity = function ( words, entity ) {
     const firstWord = words[ 0 ];
-    // Process multi-word entity.
     uniWordEntities[ firstWord ] = uniWordEntities[ firstWord ] || Object.create( null );
     uniWordEntities[ firstWord ].wordCounts = uniWordEntities[ firstWord ].wordCounts || [];
     if ( uniWordEntities[ firstWord ].wordCounts.indexOf( words.length ) === -1 ) uniWordEntities[ firstWord ].wordCounts.push( words.length );
