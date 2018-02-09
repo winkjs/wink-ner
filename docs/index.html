@@ -120,6 +120,39 @@
 <pre><code>npm install wink-ner --save
 </code></pre>
 <h3>Getting Started</h3>
+<pre class='hljs'><span class="hljs-comment">// Load wink ner.</span>
+<span class="hljs-keyword">var</span> ner = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-ner'</span> );
+<span class="hljs-comment">// Create your instance of wink ner &amp; use defualt config.</span>
+<span class="hljs-keyword">var</span> myNER = ner();
+<span class="hljs-comment">// Define training data.</span>
+<span class="hljs-keyword">var</span> trainingData = [
+  { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester united'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'club'</span>, <span class="hljs-attr">uid</span>: <span class="hljs-string">'manu'</span> },
+  { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'city'</span> },
+  { <span class="hljs-attr">text</span>: <span class="hljs-string">'U K'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'country'</span>, <span class="hljs-attr">uid</span>: <span class="hljs-string">'uk'</span> }
+];
+<span class="hljs-comment">// Learn from the training data.</span>
+myNER.learn( trainingData );
+<span class="hljs-comment">// Since recognize() requires tokens, use wink-tokenizer.</span>
+<span class="hljs-keyword">var</span> winkTokenizer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-tokenizer'</span> );
+<span class="hljs-comment">// Instantiate it and extract tokenize() api.</span>
+<span class="hljs-keyword">var</span> tokenize = winkTokenizer().tokenize;
+<span class="hljs-comment">// Tokenize the sentence.</span>
+<span class="hljs-keyword">var</span> tokens = tokenize( <span class="hljs-string">'Manchester United is a football club based in Manchester, U. K.'</span> )
+<span class="hljs-comment">// Simply Detect entities!</span>
+myNER.recognize( tokens );
+<span class="hljs-comment">// -&gt; [</span>
+<span class="hljs-comment">//      { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ], value: 'manchester united', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'is', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'a', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'football', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'club', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'based', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'in', tag: 'word' },</span>
+<span class="hljs-comment">//      { entityType: 'city', value: 'Manchester', tag: 'word', originalSeq: [ 'Manchester' ], uid: 'manchester' },</span>
+<span class="hljs-comment">//      { value: ',', tag: 'punctuation' },</span>
+<span class="hljs-comment">//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ], value: 'u k', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: '.', tag: 'punctuation' }</span>
+<span class="hljs-comment">//    ]</span></pre>
 <h3>Documentation</h3>
 <p>Check out the <a href="http://winkjs.org/wink-ner/">named entity recognizer API documentation</a> to learn more.</p>
 <h3>Need Help?</h3>
@@ -591,7 +624,7 @@ character. For example,
   { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'city'</span> },
   { <span class="hljs-attr">text</span>: <span class="hljs-string">'U K'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'country'</span>, <span class="hljs-attr">uid</span>: <span class="hljs-string">'uk'</span> }
 ];
-learn( trainingData );
+myNER.learn( trainingData );
 <span class="hljs-comment">// -&gt; 3</span></pre>
     
   
