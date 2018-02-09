@@ -33,7 +33,7 @@ var helpers = require( 'wink-helpers' );
  * training, recognition, etc.
  * @example
  * // Load wink ner.
- * var tagger = require( 'wink-ner' );
+ * var ner = require( 'wink-ner' );
  * // Create your instance of wink ner.
  * var myNER = ner();
 */
@@ -273,22 +273,22 @@ var ner = function () {
    * [wink-tokenizer](https://www.npmjs.com/package/wink-tokenizer) or follows
    * it's token format.
    *
-   * It can be use to learn or update learnings incrementally; but it can not be
+   * It can be used to learn or update learnings incrementally; but it can not be
    * used to unlearn or delete one or more entities.
    *
-   * If duplicated entity definitions are enountered then all the entries except
+   * If duplicate entity definitions are enountered then all the entries except
    * the **last one** are ignored.
    *
    * Acronyms must be added with space between each character; for example USA
    * should be added as `'u s a'` — this ensure correct detection of
-   * `U S A` or `U. S. A.` or `U.S.A.` as `USA.`
+   * `U S A` or `U. S. A.` or `U.S.A.` as `USA` \[Refer to the example below\].
    *
    * @param {object[]} entities — where each element defines an entity via
    * two mandatory properties viz. `text` and `entityType` as described later.
    * Note if an element is *not an object* or *does not contain the mandatory
    * properties,* it is ignored.
    *
-   * In addition to these two properties, you may optionally defined two more
+   * In addition to these two properties, you may optionally define two more
    * properties as described in the table below. Apart from these **4 properties**,
    * if any additional property is defined, the same is copied to the output
    * entity token as-is for consumption by your code to simplify processing.
@@ -310,11 +310,11 @@ var ner = function () {
    * @return {number} of actual entities learned.
    * @example
    * var trainingData = [
-   *   { text: 'manchester united', entityType: 'club' },
+   *   { text: 'manchester united', entityType: 'club', uid: 'manu' },
    *   { text: 'manchester', entityType: 'city' },
-   *   { text: 'uk', entityType: 'country' }
+   *   { text: 'U K', entityType: 'country', uid: 'uk' }
    * ];
-   * learn( trainingData );
+   * myNER.learn( trainingData );
    * // -> 3
   */
   var learn = function ( entities ) {
@@ -453,8 +453,29 @@ var ner = function () {
    * [wink-tokenizer](https://www.npmjs.com/package/wink-tokenizer) or follow
    * it's standards.
    *
-   * @return {object[]} of updated `tokens.`
+   * @return {object[]} of updated `tokens` with entities tagged.
    * @example
+   * // Use wink tokenizer.
+   * var winkTokenizer = require( 'wink-tokenizer' );
+   * // Instantiate it and use tokenize() api.
+   * var tokenize = winkTokenizer().tokenize;
+   * var tokens = tokenize( 'Manchester United is a professional football club based in Manchester, U. K.' )
+   * // Detect entities.
+   * myNER.recognize( tokens );
+   * // -> [
+   * //      { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ], value: 'manchester united', tag: 'word' },
+   * //      { value: 'is', tag: 'word' },
+   * //      { value: 'a', tag: 'word' },
+   * //      { value: 'professional', tag: 'word' },
+   * //      { value: 'football', tag: 'word' },
+   * //      { value: 'club', tag: 'word' },
+   * //      { value: 'based', tag: 'word' },
+   * //      { value: 'in', tag: 'word' },
+   * //      { value: 'Manchester', tag: 'word', originalSeq: [ 'Manchester' ], uid: 'manchester', entityType: 'city' },
+   * //      { value: ',', tag: 'punctuation' },
+   * //      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ], value: 'u k', tag: 'word' },
+   * //      { value: '.', tag: 'punctuation' }
+   * //    ]
   */
   var recognize = function ( tokens ) {
     // var tokens = sentence; // tokenize( sentence.toLowerCase() );

@@ -199,7 +199,7 @@ training, recognition, etc.
     
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Load wink ner.</span>
-<span class="hljs-keyword">var</span> tagger = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-ner'</span> );
+<span class="hljs-keyword">var</span> ner = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-ner'</span> );
 <span class="hljs-comment">// Create your instance of wink ner.</span>
 <span class="hljs-keyword">var</span> myNER = ner();</pre>
     
@@ -433,13 +433,13 @@ myNER.defineConfig( {
 calls in a sentence that has been already tokenized either using
 <a href="https://www.npmjs.com/package/wink-tokenizer">wink-tokenizer</a> or follows
 it's token format.</p>
-<p>It can be use to learn or update learnings incrementally; but it can not be
+<p>It can be used to learn or update learnings incrementally; but it can not be
 used to unlearn or delete one or more entities.</p>
-<p>If duplicated entity definitions are enountered then all the entries except
+<p>If duplicate entity definitions are enountered then all the entries except
 the <strong>last one</strong> are ignored.</p>
 <p>Acronyms must be added with space between each character; for example USA
 should be added as <code>'u s a'</code> — this ensure correct detection of
-<code>U S A</code> or <code>U. S. A.</code> or <code>U.S.A.</code> as <code>USA.</code></p>
+<code>U S A</code> or <code>U. S. A.</code> or <code>U.S.A.</code> as <code>USA</code> [Refer to the example below].</p>
 
 
   <div class='pre p1 fill-light mt0'>learn(entities: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
@@ -472,7 +472,7 @@ Note if an element is
 <em>does not contain the mandatory
 properties,</em>
  it is ignored.
-<p>In addition to these two properties, you may optionally defined two more
+<p>In addition to these two properties, you may optionally define two more
 properties as described in the table below. Apart from these <strong>4 properties</strong>,
 if any additional property is defined, the same is copied to the output
 entity token as-is for consumption by your code to simplify processing.</p>
@@ -587,9 +587,9 @@ character. For example,
     
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> trainingData = [
-  { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester united'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'club'</span> },
+  { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester united'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'club'</span>, <span class="hljs-attr">uid</span>: <span class="hljs-string">'manu'</span> },
   { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'city'</span> },
-  { <span class="hljs-attr">text</span>: <span class="hljs-string">'uk'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'country'</span> }
+  { <span class="hljs-attr">text</span>: <span class="hljs-string">'U K'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'country'</span>, <span class="hljs-attr">uid</span>: <span class="hljs-string">'uk'</span> }
 ];
 learn( trainingData );
 <span class="hljs-comment">// -&gt; 3</span></pre>
@@ -665,7 +665,8 @@ it's standards.
       <div class='py1 quiet mt1 prose-big'>Returns</div>
       <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>></code>:
         of updated 
-<code>tokens.</code>
+<code>tokens</code>
+ with entities tagged.
 
       
     
@@ -673,6 +674,32 @@ it's standards.
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Use wink tokenizer.</span>
+<span class="hljs-keyword">var</span> winkTokenizer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-tokenizer'</span> );
+<span class="hljs-comment">// Instantiate it and use tokenize() api.</span>
+<span class="hljs-keyword">var</span> tokenize = winkTokenizer().tokenize;
+<span class="hljs-keyword">var</span> tokens = tokenize( <span class="hljs-string">'Manchester United is a professional football club based in Manchester, U. K.'</span> )
+<span class="hljs-comment">// Detect entities.</span>
+myNER.recognize( tokens );
+<span class="hljs-comment">// -&gt; [</span>
+<span class="hljs-comment">//      { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ], value: 'manchester united', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'is', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'a', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'professional', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'football', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'club', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'based', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'in', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'Manchester', tag: 'word', originalSeq: [ 'Manchester' ], uid: 'manchester', entityType: 'city' },</span>
+<span class="hljs-comment">//      { value: ',', tag: 'punctuation' },</span>
+<span class="hljs-comment">//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ], value: 'u k', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: '.', tag: 'punctuation' }</span>
+<span class="hljs-comment">//    ]</span></pre>
+    
   
 
   
