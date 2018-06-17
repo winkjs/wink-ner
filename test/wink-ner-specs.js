@@ -80,6 +80,47 @@ describe( 'defineConfig() testing', function () {
   } );
 } );
 
+describe( 'defineConfig() exceptions/special conditions', function () {
+  var n = ner();
+  it( 'empty config object shoud restore default config', function () {
+    expect( n.defineConfig( {} ) ).to.deep.equal( { tagsToIgnore: [ 'punctuation' ], valuesToIgnore: [], ignoreDiacritics: true } );
+  } );
+
+  it( 'should throw error if config is not defined', function () {
+    expect( n.defineConfig.bind( null ) ).to.throw( 'wink-ner/defineConfig: config must be an object, instead found: undefined' );
+  } );
+
+  it( 'should throw error if valuesToIgnore is not an array', function () {
+    // Sending **1** to ensure truthy value!
+    expect( n.defineConfig.bind( null, { valuesToIgnore: 1 } ) ).to.throw( 'wink-ner/defineConfig: valuesToIgnore must be an array, instead found: 1' );
+  } );
+
+  it( 'should throw error if tagsToIgnore is not an array', function () {
+    // Sending **1** to ensure truthy value!
+    expect( n.defineConfig.bind( null, { tagsToIgnore: 1 } ) ).to.throw( 'wink-ner/defineConfig: tagsToIgnore must be an array, instead found: 1' );
+  } );
+
+  it( 'should throw error if tagsToIgnore does not contain string', function () {
+    // Sending **1** to ensure truthy value!
+    expect( n.defineConfig.bind( null, { tagsToIgnore: [ 1 ] } ) ).to.throw( 'wink-ner/defineConfig: tagsToIgnore must contain strings, instead found: [1]' );
+  } );
+
+  it( 'should only consider valid tags', function () {
+    // **word** is not valid here, whereas **email** is!
+    expect( n.defineConfig( { tagsToIgnore: [ 'email', 'word' ] } ) ).to.deep.equal( { tagsToIgnore: [ 'email' ], valuesToIgnore: [], ignoreDiacritics: true } );
+  } );
+
+  it( 'should throw error if valuesToIgnore does not contain string', function () {
+    // Sending **1** to ensure truthy value!
+    expect( n.defineConfig.bind( null, { valuesToIgnore: [ 1 ] } ) ).to.throw( 'wink-ner/defineConfig: valuesToIgnore must contain strings, instead found: [1]' );
+  } );
+
+  it( 'should accept any string value', function () {
+    // **word** is not valid here, whereas **email** is!
+    expect( n.defineConfig( { valuesToIgnore: [ 'limited' ] } ) ).to.deep.equal( { tagsToIgnore: [], valuesToIgnore: [ 'limited' ], ignoreDiacritics: true } );
+  } );
+} );
+
 describe( 'acronyms', function () {
   var trainingData = [
     { text: 'u s a', entityType: 'country', uid: 'usa' },

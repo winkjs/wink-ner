@@ -114,7 +114,7 @@ var ner = function () {
     }
     // Check if `tagsToIgnore` is an array provided it is a truthy.
     if ( config.tagsToIgnore && !helpers.validate.isArray( config.tagsToIgnore ) ) {
-      throw Error( 'wink-ner/defineConfig: valuesToIgnore must be an array, instead found: ' + JSON.stringify( config.tagsToIgnore ) );
+      throw Error( 'wink-ner/defineConfig: tagsToIgnore must be an array, instead found: ' + JSON.stringify( config.tagsToIgnore ) );
     }
 
     var validTags = Object.create( null );
@@ -145,7 +145,7 @@ var ner = function () {
       if ( ignore ) {
         for ( let i = 0; i < ignore.length; i += 1 ) {
           const key = ignore[ i ];
-          if ( !key && ( typeof key !== 'string' ) ) {
+          if ( key && ( typeof key !== 'string' ) ) {
             throw Error( 'wink-ner/defineConfig: tagsToIgnore must contain strings, instead found: ' + JSON.stringify( ignore ) );
           }
           // Include only valid tags; others are ignored.
@@ -157,7 +157,7 @@ var ner = function () {
       if ( ignore ) {
         for ( let i = 0; i < ignore.length; i += 1 ) {
           const key = ignore[ i ];
-          if ( !key && ( typeof key !== 'string' ) ) {
+          if ( key && ( typeof key !== 'string' ) ) {
             throw Error( 'wink-ner/defineConfig: valuesToIgnore must contain strings, instead found: ' + JSON.stringify( ignore ) );
           }
           cfg.valuesToIgnore[ key ] = true;
