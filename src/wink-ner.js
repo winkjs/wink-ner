@@ -488,7 +488,7 @@ var ner = function () {
       t = tokens[ i ];
       if ( t.tag === 'word' ) {
         // Look up for the word; if not found try its base form.
-        let value = t.value || '';
+        let value = t.value;
         value = normalize( value );
         candidate = uniWordEntities[ value ];
         if ( !candidate ) {
@@ -507,7 +507,7 @@ var ner = function () {
                       2 : ( candidate.entityType === undefined ) ?
                         3 : 4;
 
-        switch ( action ) {
+        switch ( action ) { // eslint-disable-line default-case
           case 1:
             // Non-entity, just push the token to `nerdts`.
             nerdts.push( t );
@@ -535,8 +535,6 @@ var ner = function () {
               nerdts.push( copyKVPs( t, candidate ) );
             } else i = inew - 1;
             break;
-          default:
-            throw Error( 'Unknown exception!' );
         }
       } else {
         nerdts.push( t );
@@ -553,18 +551,26 @@ var ner = function () {
     return true;
   }; // importJSON()
 
+  var initialize = function ( ) {
+    // Define default configuration.
+    // Ignore `punctuation`;
+    cfg.tagsToIgnore = Object.create( null );
+    cfg.tagsToIgnore.punctuation = true;
+    // Leave values to ignore `undefined`;
+    cfg.valuesToIgnore = Object.create( null );
+    // And ignore diacritics by default.
+    cfg.ignoreDiacritics = true;
+    // Initialize learnings
+    uniWordEntities = Object.create( null );
+    multiWordEntities = Object.create( null );
+  }; // initialize()
+
   var reset = function ( ) {
+    initialize();
     return true;
   }; // reset()
 
-  // Define default configuration.
-  // Ignore `punctuation`;
-  cfg.tagsToIgnore = Object.create( null );
-  cfg.tagsToIgnore.punctuation = true;
-  // Leave values to ignore `undefined`;
-  cfg.valuesToIgnore = Object.create( null );
-  // And ignore diacritics by default.
-  cfg.ignoreDiacritics = true;
+  initialize();
 
   methods.defineConfig = defineConfig;
   methods.learn = learn;

@@ -55,8 +55,8 @@ describe( 'defineConfig() testing', function () {
   ];
   var result;
   it( 'must return empty config', function () {
-    result = { tagsToIgnore: [], valuesToIgnore: [], ignoreDiacritics: false };
-    expect( n.defineConfig( { tagsToIgnore: [], ignoreDiacritics: false } ) ).to.deep.equal( result );
+    result = { tagsToIgnore: [ ], valuesToIgnore: [], ignoreDiacritics: false };
+    expect( n.defineConfig( { tagsToIgnore: [ ], ignoreDiacritics: false } ) ).to.deep.equal( result );
   } );
 
   it( 'must return 3 with training data', function () {
@@ -139,5 +139,55 @@ describe( 'acronyms', function () {
     ];
     expect( n.learn( trainingData ) ).to.equal( 2 );
     expect( n.recognize( t( 'U S A and U. K. are countries.' ) ) ).to.deep.equal( result );
+  } );
+} );
+
+describe( 'multi-word entity test', function () {
+  var n = ner();
+  var trainingData = [
+    { text: 'raw banana', entityType: 'veg' },
+    { text: 'banana', entityType: 'fruit' },
+    { text: 'raw', entityType: 'org' }
+  ];
+  var result;
+
+  it( 'must return 3 with training data', function () {
+    expect( n.learn( trainingData ) ).to.equal( 3 );
+  } );
+
+
+  it( 'must distinguish between raw banana (veg) and raw (org)', function () {
+    result = [
+      { value: 'raw banana', tag: 'word', originalSeq: [ 'raw', '-', 'banana' ], uid: 'raw_banana', entityType: 'veg' },
+      // { value: 'banana', tag: 'word', originalSeq: [ 'banana' ], uid: 'banana', entityType: 'fruit' },
+      { value: 'is', tag: 'word' },
+      { value: 'good', tag: 'word' },
+      { value: 'for', tag: 'word' },
+      { value: 'raw', tag: 'word', originalSeq: [ 'raw' ], uid: 'raw', entityType: 'org' },
+      { value: 'employees', tag: 'word' }
+    ];
+    // Since last config is empty, it can not detect 'raw banana' as an entity;
+    // instead it will just detect raw as an org!
+    expect( n.recognize( t( 'raw-banana is good for raw employees' ) ) ).to.deep.equal( result );
+  } );
+
+  it( 'must return 2 with the revised training data', function () {
+    expect( n.reset() ).to.equal( true );
+    expect( n.learn( trainingData.slice( 0, 2 ) ) ).to.equal( 2 );
+  } );
+
+  it( 'must distinguish between raw banana (veg) and raw (word - non entity)', function () {
+    result = [
+      { value: 'raw banana', tag: 'word', originalSeq: [ 'raw', '-', 'banana' ], uid: 'raw_banana', entityType: 'veg' },
+      // { value: 'banana', tag: 'word', originalSeq: [ 'banana' ], uid: 'banana', entityType: 'fruit' },
+      { value: 'should', tag: 'word' },
+      { value: 'not', tag: 'word' },
+      { value: 'be', tag: 'word' },
+      { value: 'eaten', tag: 'word' },
+      { value: 'raw', tag: 'word' }
+    ];
+    // Since last config is empty, it can not detect 'raw banana' as an entity;
+    // instead it will just detect raw as an org!
+    expect( n.recognize( t( 'raw-banana should not be eaten raw' ) ) ).to.deep.equal( result );
   } );
 } );
