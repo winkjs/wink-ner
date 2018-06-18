@@ -93,6 +93,16 @@
                 
                 </li>
               
+                
+                <li><a
+                  href='#reset'
+                  class="">
+                  reset
+                  
+                </a>
+                
+                </li>
+              
             </ul>
           </div>
           <div class='mt1 h6 quiet'>
@@ -732,6 +742,69 @@ myNER.recognize( tokens );
 <span class="hljs-comment">//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ], value: 'u k', tag: 'word' },</span>
 <span class="hljs-comment">//      { value: '.', tag: 'punctuation' }</span>
 <span class="hljs-comment">//    ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='reset'>
+      reset
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Resets the named entity recognizer by re-initializing all the learnings and
+by setting the configuration to default.</p>
+
+
+  <div class='pre p1 fill-light mt0'>reset(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>:
+        always true.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>myNER.reset( );
+<span class="hljs-comment">// -&gt; true</span></pre>
     
   
 

@@ -565,6 +565,17 @@ var ner = function () {
     multiWordEntities = Object.create( null );
   }; // initialize()
 
+  // ### reset
+  /**
+   *
+   * Resets the named entity recognizer by re-initializing all the learnings and
+   * by setting the configuration to default.
+   *
+   * @return {boolean} always true.
+   * @example
+   * myNER.reset( );
+   * // -> true
+  */
   var reset = function ( ) {
     initialize();
     return true;
