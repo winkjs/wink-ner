@@ -9,6 +9,8 @@ var expect = chai.expect;
 var describe = mocha.describe;
 var it = mocha.it;
 
+var learnings = '[{"tagsToIgnore":{},"valuesToIgnore":{},"ignoreDiacritics":false},{"raw":{"entityType":"org","wordCounts":[2]},"banana":{"entityType":"fruit"}},{"raw banana":{"entityType":"veg"}},{},[],[]]';
+
 describe( 'instantiate ner', function () {
   it( 'must return 7 methods', function () {
     expect( Object.keys( ner() ).length ).to.equal( 7 );
@@ -63,6 +65,9 @@ describe( 'defineConfig() testing', function () {
     expect( n.learn( trainingData ) ).to.equal( 3 );
   } );
 
+  it( 'must return correct learnings on export', function () {
+    expect( n.exportJSON( ) ).to.deep.equal( learnings );
+  } );
 
   it( 'must not ignore anything', function () {
     result = [
