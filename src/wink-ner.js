@@ -623,13 +623,20 @@ var ner = function () {
       helpers.array.isArray,
       helpers.array.isArray
     ];
-    var parsedJSON = JSON.parse( json );
-    if ( !helpers.array.isArray( parsedJSON ) || parsedJSON.length !== isOK.length ) {
-      throw Error( 'wink-ner: invalid JSON encountered, can not import.' );
+    var parsedJSON;
+    try {
+      parsedJSON = JSON.parse( json );
+    } catch ( ex ) {
+      throw Error( 'wink-ner: invalid JSON structure encountered, can not import.' );
     }
+
+    if ( !helpers.array.isArray( parsedJSON ) || parsedJSON.length !== isOK.length ) {
+      throw Error( 'wink-ner: invalid JSON format encountered, can not import.' );
+    }
+
     for ( var i = 0; i < isOK.length; i += 1 ) {
       if ( !isOK[ i ]( parsedJSON[ i ] ) ) {
-        throw Error( 'wink-ner: invalid JSON encountered, can not import.' );
+        throw Error( 'wink-ner: invalid JSON element encountered, can not import.' );
       }
     }
     // All good, setup variable values.

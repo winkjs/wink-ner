@@ -196,3 +196,46 @@ describe( 'multi-word entity test', function () {
     expect( n.recognize( t( 'raw-banana should not be eaten raw' ) ) ).to.deep.equal( result );
   } );
 } );
+
+describe( 'json import', function () {
+  var n = ner();
+
+  var result = [
+    { value: 'raw', tag: 'word', originalSeq: [ 'raw' ], uid: 'raw', entityType: 'org' },
+    { value: '-', tag: 'punctuation' },
+    { value: 'banana', tag: 'word', originalSeq: [ 'banana' ], uid: 'banana', entityType: 'fruit' },
+    { value: 'is', tag: 'word' },
+    { value: 'good', tag: 'word' },
+    { value: 'for', tag: 'word' },
+    { value: 'health', tag: 'word' }
+  ];
+
+  it( 'should throw error if input json is undefined', function () {
+    expect( n.importJSON.bind( null ) ).to.throw( 'wink-ner: undefined or null JSON encountered, import failed!' );
+  } );
+
+  it( 'should throw error if input json non-string', function () {
+    expect( n.importJSON.bind( null, {} ) ).to.throw( 'wink-ner: invalid JSON structure encountered, can not import.' );
+  } );
+
+  it( 'should throw error if input json non-array', function () {
+    expect( n.importJSON.bind( null, '{}' ) ).to.throw( 'wink-ner: invalid JSON format encountered, can not import.' );
+  } );
+
+  it( 'should throw error if input json is an empty array', function () {
+    expect( n.importJSON.bind( null, '[]' ) ).to.throw( 'wink-ner: invalid JSON format encountered, can not import.' );
+  } );
+
+  it( 'should throw error if input json has invalid length', function () {
+    expect( n.importJSON.bind( null, '[ 3, 2 ]' ) ).to.throw( 'wink-ner: invalid JSON format encountered, can not import.' );
+  } );
+
+  it( 'should throw error if input json has invalid length', function () {
+    expect( n.importJSON.bind( null, '[ 3, 2, 4, 3, 2, 1 ]' ) ).to.throw( 'wink-ner: invalid JSON element encountered, can not import.' );
+  } );
+
+  it( 'should import successfully correct input json', function () {
+    expect( n.importJSON( learnings ) ).to.equal( true );
+    expect( n.recognize( t( 'raw-banana is good for health' ) ) ).to.deep.equal( result );
+  } );
+} );
