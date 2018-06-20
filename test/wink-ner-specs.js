@@ -22,6 +22,8 @@ describe( 'simple training & detection', function () {
   var trainingData = [
     { text: 'raw banana', entityType: 'veg' },
     { text: 'banana', entityType: 'fruit' },
+    { text: 'raw apple', entityType: 'fruit' },
+    { txt: 'aa', entity: 'cc' }
   ];
   var tokens = [
     { value: 'get', tag: 'word' },
@@ -40,7 +42,7 @@ describe( 'simple training & detection', function () {
     { value: 'banana', tag: 'word', originalSeq: [ 'bananas' ], uid: 'banana', entityType: 'fruit' }
 ];
   it( 'basic training with 2 entities', function () {
-    expect( n.learn( trainingData ) ).to.equal( 2 );
+    expect( n.learn( trainingData ) ).to.equal( 3 );
   } );
 
   it( 'detect *banana* & *raw banana* as entities', function () {

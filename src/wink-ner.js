@@ -324,10 +324,9 @@ var ner = function () {
     for ( let i = 0, imax = entities.length; i < imax; i += 1 ) {
       const entity = entities[ i ];
       // Normalize after removing extra white spaces; required for acronyms processing.
-      const text = normalize( ( entity.text ).trim().replace( /\s+/, ' ' ) );
-      const entityType = ( entity.text ).trim().replace( /\s+/, ' ' );
+      const text = normalize( ( entity.text || '' ).trim().replace( /\s+/, ' ' ) );
       // Add if `text` and `entityType` are defined.
-      if ( text && entityType ) {
+      if ( text && entity.entityType ) {
         const words = text.split( /\s+/ );
         length += 1;
         if ( words.length === 1 ) {
