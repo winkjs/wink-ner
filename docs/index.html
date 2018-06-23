@@ -536,9 +536,15 @@ Note if an element is
 properties,</em>
  it is ignored.
 <p>In addition to these two properties, you may optionally define two more
-properties as described in the table below. Apart from these <strong>4 properties</strong>,
-if any additional property is defined, the same is copied to the output
-entity token as-is for consumption by your code to simplify processing.</p>
+properties viz. <code>uid</code> and <code>value</code>, as described in the table below.</p>
+<p><b>Note:</b> Apart from the above mentioned properties, you may also define additional properties .
+Such properties, along with their values, will be copied to the output token as-is for consumption
+by any down stream code in the NLP pipe. An example use-case is pos tagging.
+You can define <strong>pos</strong> property in an entity defition as
+<code>{ text: 'manchester united', entityType: 'club', pos: 'NNP' }</code>.
+The <a href="https://www.npmjs.com/package/wink-pos-tagger">wink-pos-tagger</a> will
+automatically use the <code>pos</code> property (if available) to ensure correct
+tagging in your context by overriding its algorithm.</p>
 
           </div>
           

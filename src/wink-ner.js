@@ -289,9 +289,16 @@ var ner = function () {
    * properties,* it is ignored.
    *
    * In addition to these two properties, you may optionally define two more
-   * properties as described in the table below. Apart from these **4 properties**,
-   * if any additional property is defined, the same is copied to the output
-   * entity token as-is for consumption by your code to simplify processing.
+   * properties viz. `uid` and `value`, as described in the table below.
+   *
+   * <b>Note:</b> Apart from the above mentioned properties, you may also define additional properties .
+   * Such properties, along with their values, will be copied to the output token as-is for consumption
+   * by any down stream code in the NLP pipe. An example use-case is pos tagging.
+   * You can define **pos** property in an entity defition as
+   * `{ text: 'manchester united', entityType: 'club', pos: 'NNP' }`.
+   * The [wink-pos-tagger](https://www.npmjs.com/package/wink-pos-tagger) will
+   * automatically use the `pos` property (if available) to ensure correct
+   * tagging in your context by overriding its algorithm.
    *
    * @param {string} entities[].text that must be detected as entity and may
    * consist of more than one word; for example, **`India`** or **`United Kindom.`**
