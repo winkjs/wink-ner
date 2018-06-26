@@ -150,6 +150,7 @@
 <pre><code>npm install wink-ner --save
 </code></pre>
 <h3>Getting Started</h3>
+<h4>Simple Named Entity Recognition</h4>
 <pre class='hljs'><span class="hljs-comment">// Load wink ner.</span>
 <span class="hljs-keyword">var</span> ner = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-ner'</span> );
 <span class="hljs-comment">// Create your instance of wink ner &amp; use defualt config.</span>
@@ -169,19 +170,51 @@ myNER.learn( trainingData );
 <span class="hljs-comment">// Tokenize the sentence.</span>
 <span class="hljs-keyword">var</span> tokens = tokenize( <span class="hljs-string">'Manchester United is a football club based in Manchester, U. K.'</span> )
 <span class="hljs-comment">// Simply Detect entities!</span>
-myNER.recognize( tokens );
+tokens = myNER.recognize( tokens );
+<span class="hljs-built_in">console</span>.log( tokens );
 <span class="hljs-comment">// -&gt; [</span>
-<span class="hljs-comment">//      { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ], value: 'manchester united', tag: 'word' },</span>
+<span class="hljs-comment">//      { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ],</span>
+<span class="hljs-comment">//        value: 'manchester united', tag: 'word' },</span>
 <span class="hljs-comment">//      { value: 'is', tag: 'word' },</span>
 <span class="hljs-comment">//      { value: 'a', tag: 'word' },</span>
 <span class="hljs-comment">//      { value: 'football', tag: 'word' },</span>
 <span class="hljs-comment">//      { value: 'club', tag: 'word' },</span>
 <span class="hljs-comment">//      { value: 'based', tag: 'word' },</span>
 <span class="hljs-comment">//      { value: 'in', tag: 'word' },</span>
-<span class="hljs-comment">//      { entityType: 'city', value: 'Manchester', tag: 'word', originalSeq: [ 'Manchester' ], uid: 'manchester' },</span>
+<span class="hljs-comment">//      { entityType: 'city', value: 'Manchester', tag: 'word',</span>
+<span class="hljs-comment">//        originalSeq: [ 'Manchester' ], uid: 'manchester' },</span>
 <span class="hljs-comment">//      { value: ',', tag: 'punctuation' },</span>
-<span class="hljs-comment">//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ], value: 'u k', tag: 'word' },</span>
+<span class="hljs-comment">//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ],</span>
+<span class="hljs-comment">//        value: 'u k', tag: 'word' },</span>
 <span class="hljs-comment">//      { value: '.', tag: 'punctuation' }</span>
+<span class="hljs-comment">//    ]</span></pre>
+<h4>Integration with POS Tagging</h4>
+<p>The <code>tokens</code> returned from <code>recognize()</code> may be further passed down to
+<code>tag()</code> api of <a href="https://www.npmjs.com/package/wink-pos-tagger"><code>wink-tokenizer</code></a> for pos tagging.</p>
+<p>Just in case you need to assign
+a specific pos tag to an entity, the same can be achieved by including a property
+<code>pos</code> in the entity definition and assigning it the desired pos tag (e.g. <code>'NNP'</code>); the wink-pos-tagger
+will automatically do the needful. For details please refer to <a href="#learn"><code>learn()</code></a> api of wink-ner.</p>
+<pre class='hljs'><span class="hljs-comment">// Load pos tagger.</span>
+<span class="hljs-keyword">var</span> tagger = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-pos-tagger'</span> );
+<span class="hljs-comment">// Instantiate it and extract tag api.</span>
+<span class="hljs-keyword">var</span> tag = tagger().tag;
+tokens = tag( tokens );
+<span class="hljs-built_in">console</span>.log( tokens );
+<span class="hljs-comment">// -&gt; [ { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ],</span>
+<span class="hljs-comment">//        value: 'manchester united', tag: 'word', normal: 'manchester united', pos: 'NNP' },</span>
+<span class="hljs-comment">//      { value: 'is', tag: 'word', normal: 'is', pos: 'VBZ', lemma: 'be' },</span>
+<span class="hljs-comment">//      { value: 'a', tag: 'word', normal: 'a', pos: 'DT' },</span>
+<span class="hljs-comment">//      { value: 'football', tag: 'word', normal: 'football', pos: 'NN', lemma: 'football' },</span>
+<span class="hljs-comment">//      { value: 'club', tag: 'word', normal: 'club', pos: 'NN', lemma: 'club' },</span>
+<span class="hljs-comment">//      { value: 'based', tag: 'word', normal: 'based', pos: 'VBN', lemma: 'base' },</span>
+<span class="hljs-comment">//      { value: 'in', tag: 'word', normal: 'in', pos: 'IN' },</span>
+<span class="hljs-comment">//      { value: 'Manchester', tag: 'word', originalSeq: [ 'Manchester' ],</span>
+<span class="hljs-comment">//        uid: 'manchester', entityType: 'city', normal: 'manchester', pos: 'NNP' },</span>
+<span class="hljs-comment">//      { value: ',', tag: 'punctuation', normal: ',', pos: ',' },</span>
+<span class="hljs-comment">//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ],</span>
+<span class="hljs-comment">//        value: 'u k', tag: 'word', normal: 'u k', pos: 'NNP' },</span>
+<span class="hljs-comment">//      { value: '.', tag: 'punctuation', normal: '.', pos: '.' }</span>
 <span class="hljs-comment">//    ]</span></pre>
 <h3>Documentation</h3>
 <p>Check out the <a href="http://winkjs.org/wink-ner/">named entity recognizer API documentation</a> to learn more.</p>
