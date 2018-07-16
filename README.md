@@ -2,7 +2,7 @@
 
 Language agnostic named entity recognizer
 
-### [![Build Status](https://api.travis-ci.org/winkjs/wink-ner.svg?branch=master)](https://travis-ci.org/winkjs/wink-ner) [![Coverage Status](https://coveralls.io/repos/github/winkjs/wink-ner/badge.svg?branch=master)](https://coveralls.io/github/winkjs/wink-ner?branch=master) [![Inline docs](http://inch-ci.org/github/winkjs/wink-ner.svg?branch=master)](http://inch-ci.org/github/winkjs/wink-ner) [![dependencies Status](https://david-dm.org/winkjs/wink-ner/status.svg)](https://david-dm.org/winkjs/wink-ner) [![devDependencies Status](https://david-dm.org/winkjs/wink-ner/dev-status.svg)](https://david-dm.org/winkjs/wink-ner?type=dev)
+### [![Build Status](https://api.travis-ci.org/winkjs/wink-ner.svg?branch=master)](https://travis-ci.org/winkjs/wink-ner) [![Coverage Status](https://coveralls.io/repos/github/winkjs/wink-ner/badge.svg?branch=master)](https://coveralls.io/github/winkjs/wink-ner?branch=master) [![Inline docs](http://inch-ci.org/github/winkjs/wink-ner.svg?branch=master)](http://inch-ci.org/github/winkjs/wink-ner) [![dependencies Status](https://david-dm.org/winkjs/wink-ner/status.svg)](https://david-dm.org/winkjs/wink-ner) [![devDependencies Status](https://david-dm.org/winkjs/wink-ner/dev-status.svg)](https://david-dm.org/winkjs/wink-ner?type=dev) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/winkjs/Lobby)
 
 [<img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >](http://winkjs.org/)
 
