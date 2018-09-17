@@ -1,6 +1,6 @@
 {
   "name": "wink-ner",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Language agnostic named entity recognizer",
   "keywords": [
     "NER",
