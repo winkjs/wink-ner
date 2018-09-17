@@ -57,7 +57,7 @@ console.log( tokens );
 ```
 #### Integration with POS Tagging
 The `tokens` returned from `recognize()` may be further passed down to
-`tag()` api of [`wink-tokenizer`](https://www.npmjs.com/package/wink-pos-tagger) for pos tagging.
+`tag()` api of [**`wink-pos-tagger`**](https://www.npmjs.com/package/wink-pos-tagger) for pos tagging.
 
 Just in case you need to assign
 a specific pos tag to an entity, the same can be achieved by including a property

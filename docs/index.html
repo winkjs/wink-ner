@@ -142,7 +142,7 @@
   
     <h1>wink-ner</h1>
 <p>Language agnostic named entity recognizer</p>
-<h3><a href="https://travis-ci.org/winkjs/wink-ner"><img src="https://api.travis-ci.org/winkjs/wink-ner.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-ner?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-ner/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-ner"><img src="http://inch-ci.org/github/winkjs/wink-ner.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-ner"><img src="https://david-dm.org/winkjs/wink-ner/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-ner?type=dev"><img src="https://david-dm.org/winkjs/wink-ner/dev-status.svg" alt="devDependencies Status"></a></h3>
+<h3><a href="https://travis-ci.org/winkjs/wink-ner"><img src="https://api.travis-ci.org/winkjs/wink-ner.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-ner?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-ner/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-ner"><img src="http://inch-ci.org/github/winkjs/wink-ner.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-ner"><img src="https://david-dm.org/winkjs/wink-ner/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-ner?type=dev"><img src="https://david-dm.org/winkjs/wink-ner/dev-status.svg" alt="devDependencies Status"></a> <a href="https://gitter.im/winkjs/Lobby"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" alt="Gitter"></a></h3>
 <p><a href="http://winkjs.org/"><img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" ></a></p>
 <p>Recognize named entities in a sentence using <strong><code>wink-ner</code></strong>. It is a part of <a href="http://winkjs.org/">wink</a> — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.</p>
 <h3>Installation</h3>
@@ -190,7 +190,7 @@ tokens = myNER.recognize( tokens );
 <span class="hljs-comment">//    ]</span></pre>
 <h4>Integration with POS Tagging</h4>
 <p>The <code>tokens</code> returned from <code>recognize()</code> may be further passed down to
-<code>tag()</code> api of <a href="https://www.npmjs.com/package/wink-pos-tagger"><code>wink-tokenizer</code></a> for pos tagging.</p>
+<code>tag()</code> api of <a href="https://www.npmjs.com/package/wink-pos-tagger"><strong><code>wink-pos-tagger</code></strong></a> for pos tagging.</p>
 <p>Just in case you need to assign
 a specific pos tag to an entity, the same can be achieved by including a property
 <code>pos</code> in the entity definition and assigning it the desired pos tag (e.g. <code>'NNP'</code>); the wink-pos-tagger
