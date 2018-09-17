@@ -8,6 +8,7 @@
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
   <link href='assets/github.css' type='text/css' rel='stylesheet' />
   <link href='assets/split.css' type='text/css' rel='stylesheet' />
+  <meta name='description' content='Language agnostic named entity recognizer'>
 </head>
 <body class='documentation m0'>
     <div class='flex'>
@@ -133,14 +134,15 @@
       <div id='split-right' class='relative overflow-auto height-viewport-100'>
         
           
-            <div class='keyline-top-not py2'><section class='py2 clearfix'>
+            <div class='keyline-top-not py2'>
+  <section class='py2 clearfix'>
 
-  <h2 id='introduction' class='mt0'>
-    Introduction
-  </h2>
+    <h2 id='introduction' class='mt0'>
+      Introduction
+    </h2>
 
-  
-    <h1>wink-ner</h1>
+    
+      <h1>wink-ner</h1>
 <p>Language agnostic named entity recognizer</p>
 <h3><a href="https://travis-ci.org/winkjs/wink-ner"><img src="https://api.travis-ci.org/winkjs/wink-ner.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-ner?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-ner/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-ner"><img src="http://inch-ci.org/github/winkjs/wink-ner.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-ner"><img src="https://david-dm.org/winkjs/wink-ner/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-ner?type=dev"><img src="https://david-dm.org/winkjs/wink-ner/dev-status.svg" alt="devDependencies Status"></a> <a href="https://gitter.im/winkjs/Lobby"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" alt="Gitter"></a></h3>
 <p><a href="http://winkjs.org/"><img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" ></a></p>
@@ -225,28 +227,200 @@ tokens = tag( tokens );
 <p>It is licensed under the under the terms of the GNU Affero General Public License as published by the Free
 Software Foundation, version 3 of the License.</p>
 
-  
-</section>
-</div>
-          
-        
-          
-            <div class='keyline-top-not py2'><section class='py2 clearfix'>
-
-  <h2 id='creating-an-instance' class='mt0'>
-    Creating an Instance
-  </h2>
-
-  
     
+  </section>
+</div>
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='introduction'>
+      Introduction
+    </h3>
+    
+    
+  </div>
+  
+
+  <h1>wink-ner</h1>
+<p>Language agnostic named entity recognizer</p>
+<h3><a href="https://travis-ci.org/winkjs/wink-ner"><img src="https://api.travis-ci.org/winkjs/wink-ner.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-ner?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-ner/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-ner"><img src="http://inch-ci.org/github/winkjs/wink-ner.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-ner"><img src="https://david-dm.org/winkjs/wink-ner/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-ner?type=dev"><img src="https://david-dm.org/winkjs/wink-ner/dev-status.svg" alt="devDependencies Status"></a> <a href="https://gitter.im/winkjs/Lobby"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" alt="Gitter"></a></h3>
+<p><a href="http://winkjs.org/"><img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" ></a></p>
+<p>Recognize named entities in a sentence using <strong><code>wink-ner</code></strong>. It is a part of <a href="http://winkjs.org/">wink</a> — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.</p>
+<h3>Installation</h3>
+<p>Use <a href="https://www.npmjs.com/package/wink-ner">npm</a> to install:</p>
+<pre><code>npm install wink-ner --save
+</code></pre>
+<h3>Getting Started</h3>
+<h4>Simple Named Entity Recognition</h4>
+<pre class='hljs'><span class="hljs-comment">// Load wink ner.</span>
+<span class="hljs-keyword">var</span> ner = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-ner'</span> );
+<span class="hljs-comment">// Create your instance of wink ner &amp; use defualt config.</span>
+<span class="hljs-keyword">var</span> myNER = ner();
+<span class="hljs-comment">// Define training data.</span>
+<span class="hljs-keyword">var</span> trainingData = [
+  { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester united'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'club'</span>, <span class="hljs-attr">uid</span>: <span class="hljs-string">'manu'</span> },
+  { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'city'</span> },
+  { <span class="hljs-attr">text</span>: <span class="hljs-string">'U K'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'country'</span>, <span class="hljs-attr">uid</span>: <span class="hljs-string">'uk'</span> }
+];
+<span class="hljs-comment">// Learn from the training data.</span>
+myNER.learn( trainingData );
+<span class="hljs-comment">// Since recognize() requires tokens, use wink-tokenizer.</span>
+<span class="hljs-keyword">var</span> winkTokenizer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-tokenizer'</span> );
+<span class="hljs-comment">// Instantiate it and extract tokenize() api.</span>
+<span class="hljs-keyword">var</span> tokenize = winkTokenizer().tokenize;
+<span class="hljs-comment">// Tokenize the sentence.</span>
+<span class="hljs-keyword">var</span> tokens = tokenize( <span class="hljs-string">'Manchester United is a football club based in Manchester, U. K.'</span> )
+<span class="hljs-comment">// Simply Detect entities!</span>
+tokens = myNER.recognize( tokens );
+<span class="hljs-built_in">console</span>.log( tokens );
+<span class="hljs-comment">// -&gt; [</span>
+<span class="hljs-comment">//      { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ],</span>
+<span class="hljs-comment">//        value: 'manchester united', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'is', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'a', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'football', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'club', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'based', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'in', tag: 'word' },</span>
+<span class="hljs-comment">//      { entityType: 'city', value: 'Manchester', tag: 'word',</span>
+<span class="hljs-comment">//        originalSeq: [ 'Manchester' ], uid: 'manchester' },</span>
+<span class="hljs-comment">//      { value: ',', tag: 'punctuation' },</span>
+<span class="hljs-comment">//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ],</span>
+<span class="hljs-comment">//        value: 'u k', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: '.', tag: 'punctuation' }</span>
+<span class="hljs-comment">//    ]</span></pre>
+<h4>Integration with POS Tagging</h4>
+<p>The <code>tokens</code> returned from <code>recognize()</code> may be further passed down to
+<code>tag()</code> api of <a href="https://www.npmjs.com/package/wink-pos-tagger"><strong><code>wink-pos-tagger</code></strong></a> for pos tagging.</p>
+<p>Just in case you need to assign
+a specific pos tag to an entity, the same can be achieved by including a property
+<code>pos</code> in the entity definition and assigning it the desired pos tag (e.g. <code>'NNP'</code>); the wink-pos-tagger
+will automatically do the needful. For details please refer to <a href="#learn"><code>learn()</code></a> api of wink-ner.</p>
+<pre class='hljs'><span class="hljs-comment">// Load pos tagger.</span>
+<span class="hljs-keyword">var</span> tagger = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-pos-tagger'</span> );
+<span class="hljs-comment">// Instantiate it and extract tag api.</span>
+<span class="hljs-keyword">var</span> tag = tagger().tag;
+tokens = tag( tokens );
+<span class="hljs-built_in">console</span>.log( tokens );
+<span class="hljs-comment">// -&gt; [ { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ],</span>
+<span class="hljs-comment">//        value: 'manchester united', tag: 'word', normal: 'manchester united', pos: 'NNP' },</span>
+<span class="hljs-comment">//      { value: 'is', tag: 'word', normal: 'is', pos: 'VBZ', lemma: 'be' },</span>
+<span class="hljs-comment">//      { value: 'a', tag: 'word', normal: 'a', pos: 'DT' },</span>
+<span class="hljs-comment">//      { value: 'football', tag: 'word', normal: 'football', pos: 'NN', lemma: 'football' },</span>
+<span class="hljs-comment">//      { value: 'club', tag: 'word', normal: 'club', pos: 'NN', lemma: 'club' },</span>
+<span class="hljs-comment">//      { value: 'based', tag: 'word', normal: 'based', pos: 'VBN', lemma: 'base' },</span>
+<span class="hljs-comment">//      { value: 'in', tag: 'word', normal: 'in', pos: 'IN' },</span>
+<span class="hljs-comment">//      { value: 'Manchester', tag: 'word', originalSeq: [ 'Manchester' ],</span>
+<span class="hljs-comment">//        uid: 'manchester', entityType: 'city', normal: 'manchester', pos: 'NNP' },</span>
+<span class="hljs-comment">//      { value: ',', tag: 'punctuation', normal: ',', pos: ',' },</span>
+<span class="hljs-comment">//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ],</span>
+<span class="hljs-comment">//        value: 'u k', tag: 'word', normal: 'u k', pos: 'NNP' },</span>
+<span class="hljs-comment">//      { value: '.', tag: 'punctuation', normal: '.', pos: '.' }</span>
+<span class="hljs-comment">//    ]</span></pre>
+<h3>Documentation</h3>
+<p>Check out the <a href="http://winkjs.org/wink-ner/">named entity recognizer API documentation</a> to learn more.</p>
+<h3>Need Help?</h3>
+<p>If you spot a bug and the same has not yet been reported, raise a new <a href="https://github.com/winkjs/wink-ner/issues">issue</a> or consider fixing it and sending a pull request.</p>
+<h3>Copyright &#x26; License</h3>
+<p><strong>wink-ner</strong> is copyright 2017-18 <a href="http://graype.in/">GRAYPE Systems Private Limited</a>.</p>
+<p>It is licensed under the under the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, version 3 of the License.</p>
+
+ 
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </section>
-</div>
-          
+
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+            <div class='keyline-top-not py2'>
+  <section class='py2 clearfix'>
+
+    <h2 id='creating-an-instance' class='mt0'>
+      Creating an Instance
+    </h2>
+
+    
+      
+
+    
+  </section>
+</div>
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='creating-an-instance'>
+      Creating an Instance
+    </h3>
+    
+    
+  </div>
+  
+
+  
+
+ 
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -261,8 +435,10 @@ Software Foundation, version 3 of the License.</p>
 
   <p>Creates an instance of <strong><code>wink-ner</code></strong>.</p>
 
-
-  <div class='pre p1 fill-light mt0'>ner(): methods</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>ner(): methods</div>
+   
   
   
 
@@ -308,25 +484,69 @@ training, recognition, etc.
   
 </section>
 
-          
         
           
-            <div class='keyline-top-not py2'><section class='py2 clearfix'>
+            <div class='keyline-top-not py2'>
+  <section class='py2 clearfix'>
 
-  <h2 id='api-methods' class='mt0'>
-    API Methods
-  </h2>
+    <h2 id='api-methods' class='mt0'>
+      API Methods
+    </h2>
+
+    
+      
+
+    
+  </section>
+</div>
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
+  <div class='clearfix'>
     
+    <h3 class='fl m0' id='api-methods'>
+      API Methods
+    </h3>
+    
+    
+  </div>
+  
+
+  
+
+ 
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </section>
-</div>
-          
+
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -350,8 +570,10 @@ result in recognition of <strong>kg</strong> and <strong>k.g.</strong> as <stron
 or <strong>Guinea-Bissau</strong> and <strong>Guinea Bissau</strong> as <strong>Guinea-Bissau</strong>
 (a country in West Africa).</p>
 
-
-  <div class='pre p1 fill-light mt0'>defineConfig(config: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>defineConfig(config: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
+   
   
   
 
@@ -509,10 +731,9 @@ myNER.defineConfig( {
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -537,8 +758,10 @@ the <strong>last one</strong> are ignored.</p>
 should be added as <code>'u s a'</code> — this ensure correct detection of
 <code>U S A</code> or <code>U. S. A.</code> or <code>U.S.A.</code> as <code>USA</code> [Refer to the example below].</p>
 
-
-  <div class='pre p1 fill-light mt0'>learn(entities: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>learn(entities: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+   
   
   
 
@@ -705,10 +928,9 @@ myNER.learn( trainingData );
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -728,8 +950,10 @@ are recognized as a single entity, then they are merged in to a single
 token; the merged tokens <code>value</code> property becomes the concatenation of all
 the <code>values</code> from merged tokens, separated by space.</p>
 
-
-  <div class='pre p1 fill-light mt0'>recognize(tokens: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>></div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>recognize(tokens: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>></div>
+   
   
   
 
@@ -811,10 +1035,9 @@ myNER.recognize( tokens );
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -830,8 +1053,10 @@ myNER.recognize( tokens );
   <p>Resets the named entity recognizer by re-initializing all the learnings and
 by setting the configuration to default.</p>
 
-
-  <div class='pre p1 fill-light mt0'>reset(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>reset(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></div>
+   
   
   
 
@@ -874,10 +1099,9 @@ by setting the configuration to default.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -893,8 +1117,10 @@ by setting the configuration to default.</p>
   <p>Exports the JSON of the learnings generated by <code>learn()</code>, which may be
 saved in a file that may be used later for NER purpose.</p>
 
-
-  <div class='pre p1 fill-light mt0'>exportJSON(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a></div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>exportJSON(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a></div>
+   
   
   
 
@@ -936,10 +1162,9 @@ saved in a file that may be used later for NER purpose.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -955,8 +1180,10 @@ saved in a file that may be used later for NER purpose.</p>
   <p>Imports the ner learnings from an already exported ner learnings via the
 <a href="#exportjson"><code>exportJSON()</code></a>.</p>
 
-
-  <div class='pre p1 fill-light mt0'>importJSON(json: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>importJSON(json: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></div>
+   
   
   
 
@@ -1024,7 +1251,6 @@ myNER.importJSON( json );</pre>
   
 </section>
 
-          
         
       </div>
     </div>
