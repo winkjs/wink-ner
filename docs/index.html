@@ -1,1261 +1,146 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset='utf-8' />
-  <title>wink-ner 1.0.2 | Documentation</title>
-  <meta name='viewport' content='width=device-width,initial-scale=1'>
-  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
-  <link href='assets/style.css' type='text/css' rel='stylesheet' />
-  <link href='assets/github.css' type='text/css' rel='stylesheet' />
-  <link href='assets/split.css' type='text/css' rel='stylesheet' />
-  <meta name='description' content='Language agnostic named entity recognizer'>
+    
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body class='documentation m0'>
-    <div class='flex'>
-      <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
-        <div class='py1 px2'>
-          <h3 class='mb0 no-anchor'>wink-ner</h3>
-          <div class='mb1'><code>1.0.2</code></div>
-          <input
-            placeholder='Filter'
-            id='filter-input'
-            class='col12 block input'
-            type='text' />
-          <div id='toc'>
-            <ul class='list-reset h5 py1-ul'>
-              
-                
-                <li><a
-                  href='#introduction'
-                  class="h5 bold black caps">
-                  Introduction
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#creating-an-instance'
-                  class="h5 bold black caps">
-                  Creating an Instance
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#ner'
-                  class="">
-                  ner
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#api-methods'
-                  class="h5 bold black caps">
-                  API Methods
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#defineconfig'
-                  class="">
-                  defineConfig
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#learn'
-                  class="">
-                  learn
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#recognize'
-                  class="">
-                  recognize
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#reset'
-                  class="">
-                  reset
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#exportjson'
-                  class="">
-                  exportJSON
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#importjson'
-                  class="">
-                  importJSON
-                  
-                </a>
-                
-                </li>
-              
-            </ul>
-          </div>
-          <div class='mt1 h6 quiet'>
-            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
-          </div>
-        </div>
-      </div>
-      <div id='split-right' class='relative overflow-auto height-viewport-100'>
-        
-          
-            <div class='keyline-top-not py2'>
-  <section class='py2 clearfix'>
+<body>
 
-    <h2 id='introduction' class='mt0'>
-      Introduction
-    </h2>
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="http://winkjs.org" target="_blank" >Wink JS</a></h2><h2><a href="https://github.com/winkjs/wink-ner" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="NER.html">NER</a><ul class='methods'><li data-type='method'><a href="NER.html#defineConfig">defineConfig</a></li><li data-type='method'><a href="NER.html#exportJSON">exportJSON</a></li><li data-type='method'><a href="NER.html#importJSON">importJSON</a></li><li data-type='method'><a href="NER.html#learn">learn</a></li><li data-type='method'><a href="NER.html#recognize">recognize</a></li><li data-type='method'><a href="NER.html#reset">reset</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#ner">ner</a></li></ul>
+</nav>
+
+<div id="main">
+    
 
     
-      <h1>wink-ner</h1>
-<p>Language agnostic named entity recognizer</p>
-<h3><a href="https://travis-ci.org/winkjs/wink-ner"><img src="https://api.travis-ci.org/winkjs/wink-ner.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-ner?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-ner/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-ner"><img src="http://inch-ci.org/github/winkjs/wink-ner.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-ner"><img src="https://david-dm.org/winkjs/wink-ner/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-ner?type=dev"><img src="https://david-dm.org/winkjs/wink-ner/dev-status.svg" alt="devDependencies Status"></a> <a href="https://gitter.im/winkjs/Lobby"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" alt="Gitter"></a></h3>
-<p><a href="http://winkjs.org/"><img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" ></a></p>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1>wink-ner</h1><p>Language agnostic named entity recognizer</p>
+<h3><a href="https://travis-ci.org/winkjs/wink-ner"><img src="https://api.travis-ci.org/winkjs/wink-ner.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-ner?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-ner/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-ner"><img src="http://inch-ci.org/github/winkjs/wink-ner.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-ner"><img src="https://david-dm.org/winkjs/wink-ner/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-ner?type=dev"><img src="https://david-dm.org/winkjs/wink-ner/dev-status.svg" alt="devDependencies Status"></a> <a href="https://gitter.im/winkjs/Lobby"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" alt="Gitter"></a></h3><p><a href="http://winkjs.org/"><img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" ></a></p>
 <p>Recognize named entities in a sentence using <strong><code>wink-ner</code></strong>. It is a part of <a href="http://winkjs.org/">wink</a> — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.</p>
-<h3>Installation</h3>
-<p>Use <a href="https://www.npmjs.com/package/wink-ner">npm</a> to install:</p>
-<pre><code>npm install wink-ner --save
-</code></pre>
-<h3>Getting Started</h3>
-<h4>Simple Named Entity Recognition</h4>
-<pre class='hljs'><span class="hljs-comment">// Load wink ner.</span>
-<span class="hljs-keyword">var</span> ner = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-ner'</span> );
-<span class="hljs-comment">// Create your instance of wink ner &amp; use defualt config.</span>
-<span class="hljs-keyword">var</span> myNER = ner();
-<span class="hljs-comment">// Define training data.</span>
-<span class="hljs-keyword">var</span> trainingData = [
-  { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester united'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'club'</span>, <span class="hljs-attr">uid</span>: <span class="hljs-string">'manu'</span> },
-  { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'city'</span> },
-  { <span class="hljs-attr">text</span>: <span class="hljs-string">'U K'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'country'</span>, <span class="hljs-attr">uid</span>: <span class="hljs-string">'uk'</span> }
+<h3>Installation</h3><p>Use <a href="https://www.npmjs.com/package/wink-ner">npm</a> to install:</p>
+<pre class="prettyprint source"><code>npm install wink-ner --save</code></pre><h3>Getting Started</h3><h4>Simple Named Entity Recognition</h4><pre class="prettyprint source lang-javascript"><code>// Load wink ner.
+var ner = require( 'wink-ner' );
+// Create your instance of wink ner & use defualt config.
+var myNER = ner();
+// Define training data.
+var trainingData = [
+  { text: 'manchester united', entityType: 'club', uid: 'manu' },
+  { text: 'manchester', entityType: 'city' },
+  { text: 'U K', entityType: 'country', uid: 'uk' }
 ];
-<span class="hljs-comment">// Learn from the training data.</span>
+// Learn from the training data.
 myNER.learn( trainingData );
-<span class="hljs-comment">// Since recognize() requires tokens, use wink-tokenizer.</span>
-<span class="hljs-keyword">var</span> winkTokenizer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-tokenizer'</span> );
-<span class="hljs-comment">// Instantiate it and extract tokenize() api.</span>
-<span class="hljs-keyword">var</span> tokenize = winkTokenizer().tokenize;
-<span class="hljs-comment">// Tokenize the sentence.</span>
-<span class="hljs-keyword">var</span> tokens = tokenize( <span class="hljs-string">'Manchester United is a football club based in Manchester, U. K.'</span> )
-<span class="hljs-comment">// Simply Detect entities!</span>
+// Since recognize() requires tokens, use wink-tokenizer.
+var winkTokenizer = require( 'wink-tokenizer' );
+// Instantiate it and extract tokenize() api.
+var tokenize = winkTokenizer().tokenize;
+// Tokenize the sentence.
+var tokens = tokenize( 'Manchester United is a football club based in Manchester, U. K.' )
+// Simply Detect entities!
 tokens = myNER.recognize( tokens );
-<span class="hljs-built_in">console</span>.log( tokens );
-<span class="hljs-comment">// -&gt; [</span>
-<span class="hljs-comment">//      { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ],</span>
-<span class="hljs-comment">//        value: 'manchester united', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'is', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'a', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'football', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'club', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'based', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'in', tag: 'word' },</span>
-<span class="hljs-comment">//      { entityType: 'city', value: 'Manchester', tag: 'word',</span>
-<span class="hljs-comment">//        originalSeq: [ 'Manchester' ], uid: 'manchester' },</span>
-<span class="hljs-comment">//      { value: ',', tag: 'punctuation' },</span>
-<span class="hljs-comment">//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ],</span>
-<span class="hljs-comment">//        value: 'u k', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: '.', tag: 'punctuation' }</span>
-<span class="hljs-comment">//    ]</span></pre>
-<h4>Integration with POS Tagging</h4>
-<p>The <code>tokens</code> returned from <code>recognize()</code> may be further passed down to
+console.log( tokens );
+// -> [
+//      { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ],
+//        value: 'manchester united', tag: 'word' },
+//      { value: 'is', tag: 'word' },
+//      { value: 'a', tag: 'word' },
+//      { value: 'football', tag: 'word' },
+//      { value: 'club', tag: 'word' },
+//      { value: 'based', tag: 'word' },
+//      { value: 'in', tag: 'word' },
+//      { entityType: 'city', value: 'Manchester', tag: 'word',
+//        originalSeq: [ 'Manchester' ], uid: 'manchester' },
+//      { value: ',', tag: 'punctuation' },
+//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ],
+//        value: 'u k', tag: 'word' },
+//      { value: '.', tag: 'punctuation' }
+//    ]</code></pre><h4>Integration with POS Tagging</h4><p>The <code>tokens</code> returned from <code>recognize()</code> may be further passed down to
 <code>tag()</code> api of <a href="https://www.npmjs.com/package/wink-pos-tagger"><strong><code>wink-pos-tagger</code></strong></a> for pos tagging.</p>
 <p>Just in case you need to assign
 a specific pos tag to an entity, the same can be achieved by including a property
 <code>pos</code> in the entity definition and assigning it the desired pos tag (e.g. <code>'NNP'</code>); the wink-pos-tagger
 will automatically do the needful. For details please refer to <a href="#learn"><code>learn()</code></a> api of wink-ner.</p>
-<pre class='hljs'><span class="hljs-comment">// Load pos tagger.</span>
-<span class="hljs-keyword">var</span> tagger = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-pos-tagger'</span> );
-<span class="hljs-comment">// Instantiate it and extract tag api.</span>
-<span class="hljs-keyword">var</span> tag = tagger().tag;
+<pre class="prettyprint source lang-javascript"><code>// Load pos tagger.
+var tagger = require( 'wink-pos-tagger' );
+// Instantiate it and extract tag api.
+var tag = tagger().tag;
 tokens = tag( tokens );
-<span class="hljs-built_in">console</span>.log( tokens );
-<span class="hljs-comment">// -&gt; [ { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ],</span>
-<span class="hljs-comment">//        value: 'manchester united', tag: 'word', normal: 'manchester united', pos: 'NNP' },</span>
-<span class="hljs-comment">//      { value: 'is', tag: 'word', normal: 'is', pos: 'VBZ', lemma: 'be' },</span>
-<span class="hljs-comment">//      { value: 'a', tag: 'word', normal: 'a', pos: 'DT' },</span>
-<span class="hljs-comment">//      { value: 'football', tag: 'word', normal: 'football', pos: 'NN', lemma: 'football' },</span>
-<span class="hljs-comment">//      { value: 'club', tag: 'word', normal: 'club', pos: 'NN', lemma: 'club' },</span>
-<span class="hljs-comment">//      { value: 'based', tag: 'word', normal: 'based', pos: 'VBN', lemma: 'base' },</span>
-<span class="hljs-comment">//      { value: 'in', tag: 'word', normal: 'in', pos: 'IN' },</span>
-<span class="hljs-comment">//      { value: 'Manchester', tag: 'word', originalSeq: [ 'Manchester' ],</span>
-<span class="hljs-comment">//        uid: 'manchester', entityType: 'city', normal: 'manchester', pos: 'NNP' },</span>
-<span class="hljs-comment">//      { value: ',', tag: 'punctuation', normal: ',', pos: ',' },</span>
-<span class="hljs-comment">//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ],</span>
-<span class="hljs-comment">//        value: 'u k', tag: 'word', normal: 'u k', pos: 'NNP' },</span>
-<span class="hljs-comment">//      { value: '.', tag: 'punctuation', normal: '.', pos: '.' }</span>
-<span class="hljs-comment">//    ]</span></pre>
-<h3>Documentation</h3>
-<p>Check out the <a href="http://winkjs.org/wink-ner/">named entity recognizer API documentation</a> to learn more.</p>
-<h3>Need Help?</h3>
-<p>If you spot a bug and the same has not yet been reported, raise a new <a href="https://github.com/winkjs/wink-ner/issues">issue</a> or consider fixing it and sending a pull request.</p>
-<h3>Copyright &#x26; License</h3>
-<p><strong>wink-ner</strong> is copyright 2017-18 <a href="http://graype.in/">GRAYPE Systems Private Limited</a>.</p>
+console.log( tokens );
+// -> [ { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ],
+//        value: 'manchester united', tag: 'word', normal: 'manchester united', pos: 'NNP' },
+//      { value: 'is', tag: 'word', normal: 'is', pos: 'VBZ', lemma: 'be' },
+//      { value: 'a', tag: 'word', normal: 'a', pos: 'DT' },
+//      { value: 'football', tag: 'word', normal: 'football', pos: 'NN', lemma: 'football' },
+//      { value: 'club', tag: 'word', normal: 'club', pos: 'NN', lemma: 'club' },
+//      { value: 'based', tag: 'word', normal: 'based', pos: 'VBN', lemma: 'base' },
+//      { value: 'in', tag: 'word', normal: 'in', pos: 'IN' },
+//      { value: 'Manchester', tag: 'word', originalSeq: [ 'Manchester' ],
+//        uid: 'manchester', entityType: 'city', normal: 'manchester', pos: 'NNP' },
+//      { value: ',', tag: 'punctuation', normal: ',', pos: ',' },
+//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ],
+//        value: 'u k', tag: 'word', normal: 'u k', pos: 'NNP' },
+//      { value: '.', tag: 'punctuation', normal: '.', pos: '.' }
+//    ]</code></pre><h3>Documentation</h3><p>Check out the <a href="http://winkjs.org/wink-ner/">named entity recognizer API documentation</a> to learn more.</p>
+<h3>Need Help?</h3><p>If you spot a bug and the same has not yet been reported, raise a new <a href="https://github.com/winkjs/wink-ner/issues">issue</a> or consider fixing it and sending a pull request.</p>
+<h3>Copyright &amp; License</h3><p><strong>wink-ner</strong> is copyright 2017-18 <a href="http://graype.in/">GRAYPE Systems Private Limited</a>.</p>
 <p>It is licensed under the under the terms of the GNU Affero General Public License as published by the Free
-Software Foundation, version 3 of the License.</p>
+Software Foundation, version 3 of the License.</p></article>
+    </section>
+
+
+
+
+
 
     
-  </section>
+    
 </div>
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
 
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='introduction'>
-      Introduction
-    </h3>
-    
-    
-  </div>
-  
+<br class="clear">
 
-  <h1>wink-ner</h1>
-<p>Language agnostic named entity recognizer</p>
-<h3><a href="https://travis-ci.org/winkjs/wink-ner"><img src="https://api.travis-ci.org/winkjs/wink-ner.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-ner?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-ner/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-ner"><img src="http://inch-ci.org/github/winkjs/wink-ner.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-ner"><img src="https://david-dm.org/winkjs/wink-ner/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-ner?type=dev"><img src="https://david-dm.org/winkjs/wink-ner/dev-status.svg" alt="devDependencies Status"></a> <a href="https://gitter.im/winkjs/Lobby"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" alt="Gitter"></a></h3>
-<p><a href="http://winkjs.org/"><img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" ></a></p>
-<p>Recognize named entities in a sentence using <strong><code>wink-ner</code></strong>. It is a part of <a href="http://winkjs.org/">wink</a> — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.</p>
-<h3>Installation</h3>
-<p>Use <a href="https://www.npmjs.com/package/wink-ner">npm</a> to install:</p>
-<pre><code>npm install wink-ner --save
-</code></pre>
-<h3>Getting Started</h3>
-<h4>Simple Named Entity Recognition</h4>
-<pre class='hljs'><span class="hljs-comment">// Load wink ner.</span>
-<span class="hljs-keyword">var</span> ner = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-ner'</span> );
-<span class="hljs-comment">// Create your instance of wink ner &amp; use defualt config.</span>
-<span class="hljs-keyword">var</span> myNER = ner();
-<span class="hljs-comment">// Define training data.</span>
-<span class="hljs-keyword">var</span> trainingData = [
-  { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester united'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'club'</span>, <span class="hljs-attr">uid</span>: <span class="hljs-string">'manu'</span> },
-  { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'city'</span> },
-  { <span class="hljs-attr">text</span>: <span class="hljs-string">'U K'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'country'</span>, <span class="hljs-attr">uid</span>: <span class="hljs-string">'uk'</span> }
-];
-<span class="hljs-comment">// Learn from the training data.</span>
-myNER.learn( trainingData );
-<span class="hljs-comment">// Since recognize() requires tokens, use wink-tokenizer.</span>
-<span class="hljs-keyword">var</span> winkTokenizer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-tokenizer'</span> );
-<span class="hljs-comment">// Instantiate it and extract tokenize() api.</span>
-<span class="hljs-keyword">var</span> tokenize = winkTokenizer().tokenize;
-<span class="hljs-comment">// Tokenize the sentence.</span>
-<span class="hljs-keyword">var</span> tokens = tokenize( <span class="hljs-string">'Manchester United is a football club based in Manchester, U. K.'</span> )
-<span class="hljs-comment">// Simply Detect entities!</span>
-tokens = myNER.recognize( tokens );
-<span class="hljs-built_in">console</span>.log( tokens );
-<span class="hljs-comment">// -&gt; [</span>
-<span class="hljs-comment">//      { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ],</span>
-<span class="hljs-comment">//        value: 'manchester united', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'is', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'a', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'football', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'club', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'based', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'in', tag: 'word' },</span>
-<span class="hljs-comment">//      { entityType: 'city', value: 'Manchester', tag: 'word',</span>
-<span class="hljs-comment">//        originalSeq: [ 'Manchester' ], uid: 'manchester' },</span>
-<span class="hljs-comment">//      { value: ',', tag: 'punctuation' },</span>
-<span class="hljs-comment">//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ],</span>
-<span class="hljs-comment">//        value: 'u k', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: '.', tag: 'punctuation' }</span>
-<span class="hljs-comment">//    ]</span></pre>
-<h4>Integration with POS Tagging</h4>
-<p>The <code>tokens</code> returned from <code>recognize()</code> may be further passed down to
-<code>tag()</code> api of <a href="https://www.npmjs.com/package/wink-pos-tagger"><strong><code>wink-pos-tagger</code></strong></a> for pos tagging.</p>
-<p>Just in case you need to assign
-a specific pos tag to an entity, the same can be achieved by including a property
-<code>pos</code> in the entity definition and assigning it the desired pos tag (e.g. <code>'NNP'</code>); the wink-pos-tagger
-will automatically do the needful. For details please refer to <a href="#learn"><code>learn()</code></a> api of wink-ner.</p>
-<pre class='hljs'><span class="hljs-comment">// Load pos tagger.</span>
-<span class="hljs-keyword">var</span> tagger = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-pos-tagger'</span> );
-<span class="hljs-comment">// Instantiate it and extract tag api.</span>
-<span class="hljs-keyword">var</span> tag = tagger().tag;
-tokens = tag( tokens );
-<span class="hljs-built_in">console</span>.log( tokens );
-<span class="hljs-comment">// -&gt; [ { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ],</span>
-<span class="hljs-comment">//        value: 'manchester united', tag: 'word', normal: 'manchester united', pos: 'NNP' },</span>
-<span class="hljs-comment">//      { value: 'is', tag: 'word', normal: 'is', pos: 'VBZ', lemma: 'be' },</span>
-<span class="hljs-comment">//      { value: 'a', tag: 'word', normal: 'a', pos: 'DT' },</span>
-<span class="hljs-comment">//      { value: 'football', tag: 'word', normal: 'football', pos: 'NN', lemma: 'football' },</span>
-<span class="hljs-comment">//      { value: 'club', tag: 'word', normal: 'club', pos: 'NN', lemma: 'club' },</span>
-<span class="hljs-comment">//      { value: 'based', tag: 'word', normal: 'based', pos: 'VBN', lemma: 'base' },</span>
-<span class="hljs-comment">//      { value: 'in', tag: 'word', normal: 'in', pos: 'IN' },</span>
-<span class="hljs-comment">//      { value: 'Manchester', tag: 'word', originalSeq: [ 'Manchester' ],</span>
-<span class="hljs-comment">//        uid: 'manchester', entityType: 'city', normal: 'manchester', pos: 'NNP' },</span>
-<span class="hljs-comment">//      { value: ',', tag: 'punctuation', normal: ',', pos: ',' },</span>
-<span class="hljs-comment">//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ],</span>
-<span class="hljs-comment">//        value: 'u k', tag: 'word', normal: 'u k', pos: 'NNP' },</span>
-<span class="hljs-comment">//      { value: '.', tag: 'punctuation', normal: '.', pos: '.' }</span>
-<span class="hljs-comment">//    ]</span></pre>
-<h3>Documentation</h3>
-<p>Check out the <a href="http://winkjs.org/wink-ner/">named entity recognizer API documentation</a> to learn more.</p>
-<h3>Need Help?</h3>
-<p>If you spot a bug and the same has not yet been reported, raise a new <a href="https://github.com/winkjs/wink-ner/issues">issue</a> or consider fixing it and sending a pull request.</p>
-<h3>Copyright &#x26; License</h3>
-<p><strong>wink-ner</strong> is copyright 2017-18 <a href="http://graype.in/">GRAYPE Systems Private Limited</a>.</p>
-<p>It is licensed under the under the terms of the GNU Affero General Public License as published by the Free
-Software Foundation, version 3 of the License.</p>
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Oct 26 2018 13:26:00 GMT+0530 (IST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
 
- 
-   
-  
-  
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
 
-  
-  
-  
-  
-  
-  
 
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-            <div class='keyline-top-not py2'>
-  <section class='py2 clearfix'>
-
-    <h2 id='creating-an-instance' class='mt0'>
-      Creating an Instance
-    </h2>
-
-    
-      
-
-    
-  </section>
-</div>
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='creating-an-instance'>
-      Creating an Instance
-    </h3>
-    
-    
-  </div>
-  
-
-  
-
- 
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='ner'>
-      ner
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Creates an instance of <strong><code>wink-ner</code></strong>.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>ner(): methods</div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>methods</code>:
-        object conatining set of API methods for named entity
-training, recognition, etc.
-
-      
-    
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Load wink ner.</span>
-<span class="hljs-keyword">var</span> ner = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-ner'</span> );
-<span class="hljs-comment">// Create your instance of wink ner.</span>
-<span class="hljs-keyword">var</span> myNER = ner();</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-            <div class='keyline-top-not py2'>
-  <section class='py2 clearfix'>
-
-    <h2 id='api-methods' class='mt0'>
-      API Methods
-    </h2>
-
-    
-      
-
-    
-  </section>
-</div>
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='api-methods'>
-      API Methods
-    </h3>
-    
-    
-  </div>
-  
-
-  
-
- 
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='defineconfig'>
-      defineConfig
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Defines the criteria to ignore one or more
-<a href="http://winkjs.org/wink-tokenizer/"><strong>tokens</strong></a> during entity detection.
-The criteria is specified in terms of array of specific <strong>tags</strong> and/or <strong>values</strong>
-to ignore; this means if any of the listed tag or value is found in a token,
-it is ignored and it’s value is not considered during entity recognition.</p>
-<p>For example by including <code>punctuation</code>  in the array of tags to ignore,
-tokens containing punctuations like <code>-</code> or <code>.</code> will be skipped. This will
-result in recognition of <strong>kg</strong> and <strong>k.g.</strong> as <strong>kg</strong> (kilogram symbol)
-or <strong>Guinea-Bissau</strong> and <strong>Guinea Bissau</strong> as <strong>Guinea-Bissau</strong>
-(a country in West Africa).</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>defineConfig(config: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>config</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
-	    — defines the 
-<code>values</code>
- and/or 
-<code>tags</code>
- to be ignore
-during entity detection. Note if the match occurs in any one of the array,
-the token is ignored.
-<p><em>An empty config object is equivalent to setting default configuration.</em></p>
-<p>The table below details the properties of <code>config</code> object:</p>
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>config.valuesToIgnore</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>
-  
-    (default <code>undefined</code>)
-  </td>
-  <td class='break-word'><span>contains 
-<strong>values</strong>
-
-to be ignored.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>config.tagsToIgnore</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>
-  
-    (default <code>[&#39;punctuation&#39;]</code>)
-  </td>
-  <td class='break-word'><span>contains 
-<strong>tags</strong>
-
-to be ignored. Duplicate and invaid tags, if any, are ignored.
-Note: 
-<code>number</code>
- and 
-<code>word</code>
- tags can never be ignored.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>config.ignoreDiacritics</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>
-  
-    (default <code>true</code>)
-  </td>
-  <td class='break-word'><span>a 
-<code>true</code>
- ensures that diacritic
-marks are ignored, whereas 
-<code>false</code>
- will ensure that they are not ignored.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
-        a copy of configuration defined.
-
-      
-    
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Throws</div>
-    <ul>
-      
-        <li><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error">error</a>: if 
-<code>valuesToIgnore</code>
- is not an array of strings.
-</li>
-      
-        <li><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error">error</a>: if 
-<code>tagsToIgnore</code>
- is not an array of strings.
-</li>
-      
-    </ul>
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Do not ignore anything!</span>
-myNER.defineConfig( { <span class="hljs-attr">tagsToIgnore</span>: [], <span class="hljs-attr">ignoreDiacritics</span>: <span class="hljs-literal">false</span> } );
-<span class="hljs-comment">// -&gt; { tagsToIgnore: [], valuesToIgnore: [], ignoreDiacritics: false }</span>
-
-<span class="hljs-comment">// Ignore only '-' and '.'</span>
-myNER.defineConfig( {
-  <span class="hljs-attr">tagsToIgnore</span>: [],
-  <span class="hljs-attr">valuesToIgnore</span>: [ <span class="hljs-string">'-'</span>, <span class="hljs-string">'.'</span> ],
-  <span class="hljs-attr">ignoreDiacritics</span>: <span class="hljs-literal">false</span>
-} );
-<span class="hljs-comment">// -&gt; {</span>
-<span class="hljs-comment">//      tagsToIgnore: [],</span>
-<span class="hljs-comment">//      valuesToIgnore: [ '-', '.' ],</span>
-<span class="hljs-comment">//      ignoreDiacritics: false</span>
-<span class="hljs-comment">//    }</span></pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='learn'>
-      learn
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Learns the entities that must be detected via <code>recognize()/predict()</code> API
-calls in a sentence that has been already tokenized either using
-<a href="https://www.npmjs.com/package/wink-tokenizer">wink-tokenizer</a> or follows
-it's token format.</p>
-<p>It can be used to learn or update learnings incrementally; but it can not be
-used to unlearn or delete one or more entities.</p>
-<p>If duplicate entity definitions are enountered then all the entries except
-the <strong>last one</strong> are ignored.</p>
-<p>Acronyms must be added with space between each character; for example USA
-should be added as <code>'u s a'</code> — this ensure correct detection of
-<code>U S A</code> or <code>U. S. A.</code> or <code>U.S.A.</code> as <code>USA</code> [Refer to the example below].</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>learn(entities: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>entities</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>)</code>
-	    — where each element defines an entity via
-two mandatory properties viz. 
-<code>text</code>
- and 
-<code>entityType</code>
- as described later.
-Note if an element is 
-<em>not an object</em>
- or 
-<em>does not contain the mandatory
-properties,</em>
- it is ignored.
-<p>In addition to these two properties, you may optionally define two more
-properties viz. <code>uid</code> and <code>value</code>, as described in the table below.</p>
-<p><b>Note:</b> Apart from the above mentioned properties, you may also define additional properties .
-Such properties, along with their values, will be copied to the output token as-is for consumption
-by any down stream code in the NLP pipe. An example use-case is pos tagging.
-You can define <strong>pos</strong> property in an entity defition as
-<code>{ text: 'manchester united', entityType: 'club', pos: 'NNP' }</code>.
-The <a href="https://www.npmjs.com/package/wink-pos-tagger">wink-pos-tagger</a> will
-automatically use the <code>pos</code> property (if available) to ensure correct
-tagging in your context by overriding its algorithm.</p>
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>entities[].text</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>that must be detected as entity and may
-consist of more than one word; for example, 
-<strong><code>India</code></strong>
- or 
-<strong><code>United Kindom.</code></strong>
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>entities[].entityType</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>type of the entity; for example
-
-<strong><code>country</code></strong>
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>entities[].uid</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  
-    (default <code>undefined</code>)
-  </td>
-  <td class='break-word'><span>unique id for the entity; example
-usecase of 
-<code>uid</code>
- is using it to access more properties of the entity from a
-database. If it is 
-<code>undefined</code>
- then it is automatically generated by joining
-the key words of the detected entity by underscore (_). For example, 
-<code>'india'</code>
-
-or 
-<code>'united_kingdom'.</code>
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>entities[].value</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  
-    (default <code>undefined</code>)
-  </td>
-  <td class='break-word'><span>that is assigned to the value
-property of the token; if 
-<code>undefined</code>
- then it is equal to the 
-<strong>value</strong>
-
-of the token in case of uni-word entities; for multi-word entities, it is
-generated automatically by joining the key words of the entries by space
-character. For example, 
-<code>'india'</code>
- or 
-<code>'united kingdom'.</code>
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        of actual entities learned.
-
-      
-    
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> trainingData = [
-  { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester united'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'club'</span>, <span class="hljs-attr">uid</span>: <span class="hljs-string">'manu'</span> },
-  { <span class="hljs-attr">text</span>: <span class="hljs-string">'manchester'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'city'</span> },
-  { <span class="hljs-attr">text</span>: <span class="hljs-string">'U K'</span>, <span class="hljs-attr">entityType</span>: <span class="hljs-string">'country'</span>, <span class="hljs-attr">uid</span>: <span class="hljs-string">'uk'</span> }
-];
-myNER.learn( trainingData );
-<span class="hljs-comment">// -&gt; 3</span></pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='recognize'>
-      recognize
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Recognizes entities in the input <code>tokens.</code> Any token(s), which is recognized
-as an entity, will automatically receive the properties that have been defined
-for the <em>detected entity</em> using <a href="#learn"><code>learn()</code></a>. If a set of tokens together
-are recognized as a single entity, then they are merged in to a single
-token; the merged tokens <code>value</code> property becomes the concatenation of all
-the <code>values</code> from merged tokens, separated by space.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>recognize(tokens: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>></div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>)</code>
-	    — tokenized either using
-
-<a href="https://www.npmjs.com/package/wink-tokenizer">wink-tokenizer</a>
- or follow
-it's standards.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>></code>:
-        of updated 
-<code>tokens</code>
- with entities tagged.
-
-      
-    
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Use wink tokenizer.</span>
-<span class="hljs-keyword">var</span> winkTokenizer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-tokenizer'</span> );
-<span class="hljs-comment">// Instantiate it and use tokenize() api.</span>
-<span class="hljs-keyword">var</span> tokenize = winkTokenizer().tokenize;
-<span class="hljs-keyword">var</span> tokens = tokenize( <span class="hljs-string">'Manchester United is a professional football club based in Manchester, U. K.'</span> )
-<span class="hljs-comment">// Detect entities.</span>
-myNER.recognize( tokens );
-<span class="hljs-comment">// -&gt; [</span>
-<span class="hljs-comment">//      { entityType: 'club', uid: 'manu', originalSeq: [ 'Manchester', 'United' ], value: 'manchester united', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'is', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'a', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'professional', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'football', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'club', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'based', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'in', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: 'Manchester', tag: 'word', originalSeq: [ 'Manchester' ], uid: 'manchester', entityType: 'city' },</span>
-<span class="hljs-comment">//      { value: ',', tag: 'punctuation' },</span>
-<span class="hljs-comment">//      { entityType: 'country', uid: 'uk', originalSeq: [ 'U', '.', 'K' ], value: 'u k', tag: 'word' },</span>
-<span class="hljs-comment">//      { value: '.', tag: 'punctuation' }</span>
-<span class="hljs-comment">//    ]</span></pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='reset'>
-      reset
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Resets the named entity recognizer by re-initializing all the learnings and
-by setting the configuration to default.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>reset(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>:
-        always true.
-
-      
-    
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>myNER.reset( );
-<span class="hljs-comment">// -&gt; true</span></pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='exportjson'>
-      exportJSON
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Exports the JSON of the learnings generated by <code>learn()</code>, which may be
-saved in a file that may be used later for NER purpose.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>exportJSON(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a></div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a></code>:
-        of the learnings.
-
-      
-    
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> learnings = myNER.exportJSON();</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='importjson'>
-      importJSON
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Imports the ner learnings from an already exported ner learnings via the
-<a href="#exportjson"><code>exportJSON()</code></a>.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>importJSON(json: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>json</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a>)</code>
-	    — containg an earlier exported learnings in JSON format.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>:
-        always 
-<code>true</code>
-.
-
-      
-    
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Throws</div>
-    <ul>
-      
-        <li><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error">error</a>: if invalid JSON is encountered.
-</li>
-      
-    </ul>
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> myNER = ner();
-<span class="hljs-comment">// Assuming that `json` has valid learnings.</span>
-myNER.importJSON( json );</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-      </div>
-    </div>
-  <script src='assets/anchor.js'></script>
-  <script src='assets/split.js'></script>
-  <script src='assets/site.js'></script>
 </body>
 </html>

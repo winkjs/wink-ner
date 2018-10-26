@@ -1,4 +1,47 @@
-//     wink-ner
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>wink-ner.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="http://winkjs.org" target="_blank" >Wink JS</a></h2><h2><a href="https://github.com/winkjs/wink-ner" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="NER.html">NER</a><ul class='methods'><li data-type='method'><a href="NER.html#defineConfig">defineConfig</a></li><li data-type='method'><a href="NER.html#exportJSON">exportJSON</a></li><li data-type='method'><a href="NER.html#importJSON">importJSON</a></li><li data-type='method'><a href="NER.html#learn">learn</a></li><li data-type='method'><a href="NER.html#recognize">recognize</a></li><li data-type='method'><a href="NER.html#reset">reset</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#ner">ner</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">wink-ner.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//     wink-ner
 //     Language agnostic named entity recognizer
 //
 //     Copyright (C) 2017-18  GRAYPE Systems Private Limited
@@ -18,7 +61,7 @@
 //
 //     You should have received a copy of the GNU Affero
 //     General Public License along with “wink-ner”.
-//     If not, see <http://www.gnu.org/licenses/>.
+//     If not, see &lt;http://www.gnu.org/licenses/>.
 
 //
 var singularize = require( 'wink-lemmatizer' ).lemmatizeNoun;
@@ -115,11 +158,11 @@ var ner = function () {
       throw Error( 'wink-ner/defineConfig: config must be an object, instead found: ' + JSON.stringify( config ) );
     }
     // Check if `valuesToIgnore` is an array provided it is a truthy.
-    if ( config.valuesToIgnore && !helpers.validate.isArray( config.valuesToIgnore ) ) {
+    if ( config.valuesToIgnore &amp;&amp; !helpers.validate.isArray( config.valuesToIgnore ) ) {
       throw Error( 'wink-ner/defineConfig: valuesToIgnore must be an array, instead found: ' + JSON.stringify( config.valuesToIgnore ) );
     }
     // Check if `tagsToIgnore` is an array provided it is a truthy.
-    if ( config.tagsToIgnore && !helpers.validate.isArray( config.tagsToIgnore ) ) {
+    if ( config.tagsToIgnore &amp;&amp; !helpers.validate.isArray( config.tagsToIgnore ) ) {
       throw Error( 'wink-ner/defineConfig: tagsToIgnore must be an array, instead found: ' + JSON.stringify( config.tagsToIgnore ) );
     }
 
@@ -149,9 +192,9 @@ var ner = function () {
       // Configure tags to ignore.
       let ignore = config.tagsToIgnore;
       if ( ignore ) {
-        for ( let i = 0; i < ignore.length; i += 1 ) {
+        for ( let i = 0; i &lt; ignore.length; i += 1 ) {
           const key = ignore[ i ];
-          if ( key && ( typeof key !== 'string' ) ) {
+          if ( key &amp;&amp; ( typeof key !== 'string' ) ) {
             throw Error( 'wink-ner/defineConfig: tagsToIgnore must contain strings, instead found: ' + JSON.stringify( ignore ) );
           }
           // Include only valid tags; others are ignored.
@@ -161,9 +204,9 @@ var ner = function () {
       // Configure values to ignore.
       ignore = config.valuesToIgnore;
       if ( ignore ) {
-        for ( let i = 0; i < ignore.length; i += 1 ) {
+        for ( let i = 0; i &lt; ignore.length; i += 1 ) {
           const key = ignore[ i ];
-          if ( key && ( typeof key !== 'string' ) ) {
+          if ( key &amp;&amp; ( typeof key !== 'string' ) ) {
             throw Error( 'wink-ner/defineConfig: valuesToIgnore must contain strings, instead found: ' + JSON.stringify( ignore ) );
           }
           cfg.valuesToIgnore[ key ] = true;
@@ -303,7 +346,7 @@ var ner = function () {
    * In addition to these two properties, you may optionally define two more
    * properties viz. `uid` and `value`, as described in the table below.
    *
-   * <b>Note:</b> Apart from the above mentioned properties, you may also define additional properties .
+   * &lt;b>Note:&lt;/b> Apart from the above mentioned properties, you may also define additional properties .
    * Such properties, along with their values, will be copied to the output token as-is for consumption
    * by any down stream code in the NLP pipe. An example use-case is pos tagging.
    * You can define **pos** property in an entity defition as
@@ -337,15 +380,15 @@ var ner = function () {
    * // -> 3
   */
   var learn = function ( entities ) {
-    // Refer to comments for variables `uniWordEntities` & `multiWordEntities`
+    // Refer to comments for variables `uniWordEntities` &amp; `multiWordEntities`
     // declarations in the beginning.
     let length = 0;
-    for ( let i = 0, imax = entities.length; i < imax; i += 1 ) {
+    for ( let i = 0, imax = entities.length; i &lt; imax; i += 1 ) {
       const entity = entities[ i ];
       // Normalize after removing extra white spaces; required for acronyms processing.
       const text = normalize( ( entity.text || '' ).trim().replace( /\s+/, ' ' ) );
       // Add if `text` and `entityType` are defined.
-      if ( text && entity.entityType ) {
+      if ( text &amp;&amp; entity.entityType ) {
         const words = text.split( /\s+/ );
         length += 1;
         if ( words.length === 1 ) {
@@ -377,8 +420,8 @@ var ner = function () {
   */
   var isIgnorable = function ( value, tag ) {
     return (
-      ( cfg.tagsToIgnore && cfg.tagsToIgnore[ tag ] ) ||
-      ( cfg.valuesToIgnore && cfg.valuesToIgnore[ value ] )
+      ( cfg.tagsToIgnore &amp;&amp; cfg.tagsToIgnore[ tag ] ) ||
+      ( cfg.valuesToIgnore &amp;&amp; cfg.valuesToIgnore[ value ] )
     );
   }; // isIgnorable()
 
@@ -397,12 +440,12 @@ var ner = function () {
     var tag, value;
     var k, kmax;
 
-    for ( k = i, kmax = tokens.length; k < kmax && words.length < n; k += 1 ) {
+    for ( k = i, kmax = tokens.length; k &lt; kmax &amp;&amp; words.length &lt; n; k += 1 ) {
       value = tokens[ k ].value;
       tag = tokens[ k ].tag;
       // If ignorable then simply follow the next iteration, after saving the
       // current value into the original sequence of tokens; otherwise if
-      // token is a word or number save it in words else just reset & break!
+      // token is a word or number save it in words else just reset &amp; break!
       if ( isIgnorable( value, tag ) ) {
         originalSeq.push( value );
       } else if ( tag === 'word' || tag === 'number' ) {
@@ -412,7 +455,7 @@ var ner = function () {
                // Here `value` must go **as is**.
                originalSeq.push( value );
              } else {
-               // Can not be ignored: reset & break!
+               // Can not be ignored: reset &amp; break!
                words = [];
                originalSeq = [];
                break;
@@ -462,7 +505,7 @@ var ner = function () {
   */
   var lookup = function ( i, tokens, candidate, nerdts ) {
     var result;
-    for ( var k = 0, kmax = candidate.wordCounts.length; k < kmax; k += 1 ) {
+    for ( var k = 0, kmax = candidate.wordCounts.length; k &lt; kmax; k += 1 ) {
       result = getNextNTokens( i, candidate.wordCounts[ k ], tokens );
       if ( result.token ) {
         result.token.tag = 'word';
@@ -519,7 +562,7 @@ var ner = function () {
     var t;
     var inew;
     var action, candidate;
-    for ( var i = 0, imax = tokens.length; i < imax; i += 1 ) {
+    for ( var i = 0, imax = tokens.length; i &lt; imax; i += 1 ) {
       t = tokens[ i ];
       if ( t.tag === 'word' ) {
         // Look up for the word; if not found try its base form.
@@ -680,7 +723,7 @@ var ner = function () {
       throw Error( 'wink-ner: invalid JSON format encountered, can not import.' );
     }
 
-    for ( var i = 0; i < isOK.length; i += 1 ) {
+    for ( var i = 0; i &lt; isOK.length; i += 1 ) {
       if ( !isOK[ i ]( parsedJSON[ i ] ) ) {
         throw Error( 'wink-ner: invalid JSON element encountered, can not import.' );
       }
@@ -711,3 +754,26 @@ var ner = function () {
 };
 
 module.exports = ner;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Oct 26 2018 13:26:00 GMT+0530 (IST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+
+</body>
+</html>
