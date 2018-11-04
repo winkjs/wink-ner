@@ -6,7 +6,7 @@ Language agnostic named entity recognizer
 
 [<img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >](http://winkjs.org/)
 
-Recognize named entities in a sentence using **`wink-ner`**. It is a part of [wink](http://winkjs.org/) — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.
+Recognize named entities in a sentence using **`wink-ner`**. It is a smart Gazetteer-based Named Entity Recognizer (NER), which can be easily trained to suite specific needs. The wink-ner is capable of differentiating between `Manchester United` & `Manchester` in a single sentence and tagging them as a club and city respectively.
 
 ### Installation
 
@@ -15,7 +15,7 @@ Use [npm](https://www.npmjs.com/package/wink-ner) to install:
     npm install wink-ner --save
 
 ### Getting Started
-#### Simple Named Entity Recognition
+#### Named Entity Recognition
 ```javascript
 // Load wink ner.
 var ner = require( 'wink-ner' );
@@ -56,13 +56,9 @@ console.log( tokens );
 //    ]
 ```
 #### Integration with POS Tagging
-The `tokens` returned from `recognize()` may be further passed down to
-`tag()` api of [**`wink-pos-tagger`**](https://www.npmjs.com/package/wink-pos-tagger) for pos tagging.
+The `tokens` returned from `recognize()` may be further passed down to `tag()` api of [**`wink-pos-tagger`**](https://www.npmjs.com/package/wink-pos-tagger) for pos tagging.
 
-Just in case you need to assign
-a specific pos tag to an entity, the same can be achieved by including a property
-`pos` in the entity definition and assigning it the desired pos tag (e.g. `'NNP'`); the wink-pos-tagger
-will automatically do the needful. For details please refer to [`learn()`](#learn) api of wink-ner.
+Just in case you need to assign a specific pos tag to an entity, the same can be achieved by including a property `pos` in the entity definition and assigning it the desired pos tag (e.g. `'NNP'`); the wink-pos-tagger will automatically do the needful. For details please refer to [`learn()`](#learn) api of wink-ner.
 
 ```javascript
 // Load pos tagger.
@@ -95,9 +91,11 @@ Check out the [named entity recognizer API documentation](http://winkjs.org/wink
 
 If you spot a bug and the same has not yet been reported, raise a new [issue](https://github.com/winkjs/wink-ner/issues) or consider fixing it and sending a pull request.
 
+### About wink
+[Wink](http://winkjs.org/) is a family of open source packages for **Statistical Analysis**, **Natural Language Processing** and **Machine Learning** in NodeJS. The code is **thoroughly documented** for easy human comprehension and has a **test coverage of ~100%** for reliability to build production grade solutions.
+
 ### Copyright & License
 
 **wink-ner** is copyright 2017-18 [GRAYPE Systems Private Limited](http://graype.in/).
 
-It is licensed under the under the terms of the GNU Affero General Public License as published by the Free
-Software Foundation, version 3 of the License.
+It is licensed under the terms of the MIT License.
