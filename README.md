@@ -6,7 +6,7 @@ Language agnostic named entity recognizer
 
 [<img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >](http://winkjs.org/)
 
-Recognize named entities in a sentence using **`wink-ner`**. It is a smart Gazetteer-based Named Entity Recognizer (NER), which can be easily trained to suite specific needs. The wink-ner is capable of differentiating between `Manchester United` & `Manchester` in a single sentence and tagging them as a club and city respectively.
+Recognize named entities in a sentence using **`wink-ner`**. It is a smart Gazetteer-based Named Entity Recognizer (NER), which can be easily trained to suite specific needs. For example, the wink-ner can differentiate between `Manchester United` & `Manchester` in a single sentence and tag them as a club and city respectively.
 
 ### Installation
 
