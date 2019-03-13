@@ -17,6 +17,119 @@
 </head>
 <body>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-47082559-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-47082559-2');
+</script>
+<script src="https://use.typekit.net/cwc1qce.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+<style media="screen">
+body {
+  font-family: 'ff-tisa-sans-web-pro', serif;
+}
+.navbar {
+  border-top: 4px solid #6C307D;
+  box-sizing: border-box;
+  height: 64px;
+  background-color: #222;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-header {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.navbar-header a img {
+  height: 24px;
+}
+
+.navbar a {
+  color: #fff;
+  line-height: 60px;
+  margin-left: 20px;
+}
+
+.navbar-right {
+  margin: 0;
+  line-height: 50px;
+  list-style: none;
+}
+
+.navbar-right li {
+  float: left;
+  margin-right: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-left: 20px;
+  font-size: 14px;
+}
+
+/* Override docdash */
+nav {
+  top: 80px;
+}
+
+#main {
+  margin-top: 30px;
+}
+</style>
+
+<script type="text/javascript">
+window.addEventListener('DOMContentLoaded', function () {
+  if ( window.location.hash ) {
+    openMember();
+    window.setTimeout( function () {
+      window.scrollTo( 0, (window.pageYOffset || document.documentElement.scrollTop) - 72);
+    }, 0)
+  }
+});
+
+window.addEventListener( 'hashchange', function (e) {
+  e.stopPropagation();
+  openMember();
+} );
+
+function openMember() {
+  var id = window.location.hash.substr(1),
+  toggler = document.getElementById( id ),
+  offset = toggler.getBoundingClientRect().top,
+  y = window.scrollY + offset - 62 - 10;
+  window.scrollTo(0, y);
+}
+</script>
+
+<header>
+  <div class="navbar">
+      <div class="navbar-header">
+        <a href="https://winkjs.org/" title="wink" class="navbar-brand">
+          <img src="https://winkjs.org/images/logo.svg">
+          wink
+        </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="main-nav">
+        <li><a href="https://winkjs.org/packages.html" class="">Packages</a></li>
+        <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li>
+        <li><a href="http://github.com/winkjs">Github</a></li>
+        <li><a href="https://twitter.com/winkjs_org">Twitter</a></li>
+        <li><a href="https://winkjs.org/about.html" class="">About</a></li>
+      </ul>
+    </div>
+</header>
+
+
 <input type="checkbox" id="nav-trigger" class="nav-trigger" />
 <label for="nav-trigger" class="navicon-button x">
   <div class="navicon"></div>
@@ -24,9 +137,9 @@
 
 <label for="nav-trigger" class="overlay"></label>
 
-<nav>
+<nav >
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="http://winkjs.org" target="_blank" >Wink JS</a></h2><h2><a href="https://github.com/winkjs/wink-ner" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="NER.html">NER</a><ul class='methods'><li data-type='method'><a href="NER.html#defineConfig">defineConfig</a></li><li data-type='method'><a href="NER.html#exportJSON">exportJSON</a></li><li data-type='method'><a href="NER.html#importJSON">importJSON</a></li><li data-type='method'><a href="NER.html#learn">learn</a></li><li data-type='method'><a href="NER.html#recognize">recognize</a></li><li data-type='method'><a href="NER.html#reset">reset</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#ner">ner</a></li></ul>
+    <h2><a href="index.html">Summary</a></h2><h2><a href="https://github.com/winkjs/wink-ner" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="NER.html">NER</a><ul class='methods'><li data-type='method'><a href="NER.html#defineConfig">defineConfig</a></li><li data-type='method'><a href="NER.html#exportJSON">exportJSON</a></li><li data-type='method'><a href="NER.html#importJSON">importJSON</a></li><li data-type='method'><a href="NER.html#learn">learn</a></li><li data-type='method'><a href="NER.html#recognize">recognize</a></li><li data-type='method'><a href="NER.html#reset">reset</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#ner">ner</a></li></ul>
 </nav>
 
 <div id="main">
@@ -59,6 +172,8 @@
 
     
 
+    
+    
     
 
      
@@ -380,6 +495,8 @@ marks are ignored, whereas <code>false</code> will ensure that they are not igno
 
 
 
+
+
 <h5>Throws:</h5>
 <ul>
         <li>
@@ -460,6 +577,7 @@ marks are ignored, whereas <code>false</code> will ensure that they are not igno
 </dl>
 
     
+
 
 
         
@@ -550,6 +668,8 @@ saved in a file that may be used later for NER purpose.</p>
 
 
 
+
+
 <h5>Returns:</h5>
 
         
@@ -572,6 +692,7 @@ saved in a file that may be used later for NER purpose.</p>
 </dl>
 
     
+
 
 
         
@@ -711,6 +832,8 @@ myNER.importJSON( json );</code></pre>
 
 
 
+
+
 <h5>Throws:</h5>
 
         
@@ -764,6 +887,7 @@ myNER.importJSON( json );</code></pre>
 </dl>
 
     
+
 
 
         
@@ -1097,6 +1221,8 @@ character. For example, <code>'india'</code> or <code>'united kingdom'.</code></
 
 
 
+
+
 <h5>Returns:</h5>
 
         
@@ -1119,6 +1245,7 @@ character. For example, <code>'india'</code> or <code>'united kingdom'.</code></
 </dl>
 
     
+
 
 
         
@@ -1284,6 +1411,8 @@ it's standards.</p></td>
 
 
 
+
+
 <h5>Returns:</h5>
 
         
@@ -1306,6 +1435,7 @@ it's standards.</p></td>
 </dl>
 
     
+
 
 
         
@@ -1397,6 +1527,8 @@ by setting the configuration to default.</p>
 
 
 
+
+
 <h5>Returns:</h5>
 
         
@@ -1421,6 +1553,7 @@ by setting the configuration to default.</p>
     
 
 
+
         
     
 
@@ -1434,14 +1567,14 @@ by setting the configuration to default.</p>
 
 
 
-    
+
     
 </div>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Feb 12 2019 22:37:07 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Mar 13 2019 10:04:53 GMT+0530 (IST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
