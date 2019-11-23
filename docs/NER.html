@@ -34,6 +34,10 @@
   ((window.gitter = {}).chat = {}).options = {
     room: 'winkjs/Lobby'
   };
+  window.onload = function () {
+      document.querySelector('.gitter-open-chat-button').innerText = 'Need help?'
+      document.querySelector('.gitter-open-chat-button').style.display = 'block';
+  }
 </script>
 <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
@@ -68,7 +72,13 @@ body {
 .navbar a {
   color: #fff;
   line-height: 60px;
+  margin-left: 0;
+}
+
+.navbar a.navbar-brand {
   margin-left: 20px;
+  display: block;
+  min-width: 40px;
 }
 
 .navbar-right {
@@ -87,10 +97,6 @@ body {
 }
 
 /* Override docdash */
-nav {
-  top: 80px;
-}
-
 #main {
   margin-top: 30px;
 }
@@ -98,6 +104,7 @@ nav {
 /* Gitter */
 .gitter-open-chat-button {
   background: #6C307D;
+  display: none;
 }
 
 .gitter-open-chat-button:hover {
@@ -118,6 +125,16 @@ window.addEventListener('DOMContentLoaded', function () {
       window.scrollTo( 0, (window.pageYOffset || document.documentElement.scrollTop) - 72);
     }, 0)
   }
+
+  document.getElementById('toc-button').addEventListener('click', function () {
+      if (document.getElementById('side-nav').className === '') {
+        document.getElementById('side-nav').className = 'is-open';
+        document.getElementById('toc-button-img').setAttribute('src','./close.svg');
+      } else {
+        document.getElementById('side-nav').className = '';
+        document.getElementById('toc-button-img').setAttribute('src','./menu.svg');
+      }
+  })
 });
 
 window.addEventListener( 'hashchange', function (e) {
@@ -139,38 +156,34 @@ function openMember() {
       <div class="navbar-header">
         <a href="https://winkjs.org/" title="wink" class="navbar-brand">
           <img src="https://winkjs.org/images/logo.svg">
-          wink
+          <span>wink</span>
         </a>
       </div>
-      <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="main-nav">
-        <li><a href="https://winkjs.org/packages.html" class="">Packages</a></li>
-        <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li>
-        <li><a href="http://github.com/winkjs">Github</a></li>
-        <li><a href="https://twitter.com/winkjs_org">Twitter</a></li>
-        <li><a href="https://winkjs.org/about.html" class="">About</a></li>
-      </ul>
+      <div class="sausage-links">
+        <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="main-nav">
+          <li><a href="https://winkjs.org/packages.html" class="">Packages</a></li>
+          <li><a href="https://winkjs.org/showcase.html" class="">Showcase</a></li>
+          <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li>
+          <li><a href="http://github.com/winkjs">Github</a></li>
+          <li><a href="https://winkjs.org/about.html" class="">About</a></li>
+        </div>
+      </nav>
     </div>
 </header>
 
+<div id="toc-button">
+  <img src="./menu.svg" alt="" id="toc-button-img">
+</div>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
 
-<label for="nav-trigger" class="overlay"></label>
+<div class="content-container">
+  <div class="main-container">
+    <div id="main">
+        
+        <h1 class="page-title">NER</h1>
+        
 
-<nav >
-    
-    <h2><a href="index.html">Summary</a></h2><h2><a href="https://github.com/winkjs/wink-ner" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="NER.html">NER</a><ul class='methods'><li data-type='method'><a href="NER.html#defineConfig">defineConfig</a></li><li data-type='method'><a href="NER.html#exportJSON">exportJSON</a></li><li data-type='method'><a href="NER.html#importJSON">importJSON</a></li><li data-type='method'><a href="NER.html#learn">learn</a></li><li data-type='method'><a href="NER.html#recognize">recognize</a></li><li data-type='method'><a href="NER.html#reset">reset</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#ner">ner</a></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">NER</h1>
-    
-
-    
+        
 
 
 
@@ -179,9 +192,9 @@ function openMember() {
 
 <header>
     
-        <h2>
+        <!--<h2>
         NER
-        </h2>
+        </h2>-->
         
             <div class="class-description"><p>NER class</p></div>
         
@@ -196,7 +209,7 @@ function openMember() {
     
 
     
-    
+
     
 
      
@@ -213,7 +226,10 @@ function openMember() {
 
     
 
-    <h4 class="name" id="defineConfig"><span class="type-signature"></span>defineConfig<span class="signature">(config)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="defineConfig">
+      defineConfig
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>defineConfig<span class="signature">(config)</span><span class="type-signature"> &rarr; {object}</span></div
 
     
 
@@ -222,12 +238,12 @@ function openMember() {
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="wink-ner.js.html">wink-ner.js</a>, <a href="wink-ner.js.html#line66">line 66</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -306,7 +322,7 @@ myNER.defineConfig( {
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -331,13 +347,14 @@ myNER.defineConfig( {
 
         <tr>
             
-                <td class="name"><code>config</code></td>
+                <td class="name">config</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">object</span>
+
 
 
             
@@ -381,13 +398,14 @@ the token is ignored.</p>
 
         <tr>
             
-                <td class="name"><code>valuesToIgnore</code></td>
+                <td class="name">valuesToIgnore</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;string></span>
+
 
 
             
@@ -419,13 +437,14 @@ to be ignored.</p></td>
 
         <tr>
             
-                <td class="name"><code>tagsToIgnore</code></td>
+                <td class="name">tagsToIgnore</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;string></span>
+
 
 
             
@@ -446,7 +465,7 @@ to be ignored.</p></td>
             
                 <td class="default">
                 
-                    <code>[ 'punctuation' ]</code>
+                    [ 'punctuation' ]
                 
                 </td>
             
@@ -460,13 +479,14 @@ Note: <code>number</code> and <code>word</code> tags can never be ignored.</p></
 
         <tr>
             
-                <td class="name"><code>ignoreDiacritics</code></td>
+                <td class="name">ignoreDiacritics</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;string></span>
+
 
 
             
@@ -487,7 +507,7 @@ Note: <code>number</code> and <code>word</code> tags can never be ignored.</p></
             
                 <td class="default">
                 
-                    <code>true</code>
+                    true
                 
                 </td>
             
@@ -520,7 +540,7 @@ marks are ignored, whereas <code>false</code> will ensure that they are not igno
 
 
 
-<h5>Throws:</h5>
+<h5>Throws</h5>
 <ul>
         <li>
 
@@ -539,6 +559,7 @@ marks are ignored, whereas <code>false</code> will ensure that they are not igno
             <dd>
                 
 <span class="param-type">error</span>
+
 
 
             </dd>
@@ -568,6 +589,7 @@ marks are ignored, whereas <code>false</code> will ensure that they are not igno
 <span class="param-type">error</span>
 
 
+
             </dd>
         </dl>
     </dt>
@@ -578,7 +600,7 @@ marks are ignored, whereas <code>false</code> will ensure that they are not igno
     </ul>
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -596,6 +618,7 @@ marks are ignored, whereas <code>false</code> will ensure that they are not igno
 <span class="param-type">object</span>
 
 
+
     </dd>
 </dl>
 
@@ -603,12 +626,17 @@ marks are ignored, whereas <code>false</code> will ensure that they are not igno
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="exportJSON"><span class="type-signature"></span>exportJSON<span class="signature">()</span><span class="type-signature"> &rarr; {json}</span></h4>
+    <h4 class="name" id="exportJSON">
+      exportJSON
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>exportJSON<span class="signature">()</span><span class="type-signature"> &rarr; {json}</span></div
 
     
 
@@ -617,12 +645,12 @@ marks are ignored, whereas <code>false</code> will ensure that they are not igno
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="wink-ner.js.html">wink-ner.js</a>, <a href="wink-ner.js.html#line624">line 624</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -693,7 +721,7 @@ saved in a file that may be used later for NER purpose.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -711,6 +739,7 @@ saved in a file that may be used later for NER purpose.</p>
 <span class="param-type">json</span>
 
 
+
     </dd>
 </dl>
 
@@ -718,12 +747,17 @@ saved in a file that may be used later for NER purpose.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="importJSON"><span class="type-signature"></span>importJSON<span class="signature">(json)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="importJSON">
+      importJSON
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>importJSON<span class="signature">(json)</span><span class="type-signature"> &rarr; {boolean}</span></div
 
     
 
@@ -732,12 +766,12 @@ saved in a file that may be used later for NER purpose.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="wink-ner.js.html">wink-ner.js</a>, <a href="wink-ner.js.html#line648">line 648</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -796,7 +830,7 @@ myNER.importJSON( json );</code></pre>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -821,13 +855,14 @@ myNER.importJSON( json );</code></pre>
 
         <tr>
             
-                <td class="name"><code>json</code></td>
+                <td class="name">json</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">json</span>
+
 
 
             
@@ -857,7 +892,7 @@ myNER.importJSON( json );</code></pre>
 
 
 
-<h5>Throws:</h5>
+<h5>Throws</h5>
 
         
 
@@ -878,6 +913,7 @@ myNER.importJSON( json );</code></pre>
 <span class="param-type">error</span>
 
 
+
             </dd>
         </dl>
     </dt>
@@ -888,7 +924,7 @@ myNER.importJSON( json );</code></pre>
     
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -906,6 +942,7 @@ myNER.importJSON( json );</code></pre>
 <span class="param-type">boolean</span>
 
 
+
     </dd>
 </dl>
 
@@ -913,12 +950,17 @@ myNER.importJSON( json );</code></pre>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="learn"><span class="type-signature"></span>learn<span class="signature">(entities)</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="learn">
+      learn
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>learn<span class="signature">(entities)</span><span class="type-signature"> &rarr; {number}</span></div
 
     
 
@@ -927,12 +969,12 @@ myNER.importJSON( json );</code></pre>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="wink-ner.js.html">wink-ner.js</a>, <a href="wink-ner.js.html#line283">line 283</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -1004,7 +1046,7 @@ myNER.learn( trainingData );
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -1029,13 +1071,14 @@ myNER.learn( trainingData );
 
         <tr>
             
-                <td class="name"><code>entities</code></td>
+                <td class="name">entities</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;object></span>
+
 
 
             
@@ -1086,13 +1129,14 @@ tagging in your context by overriding its algorithm.</p>
 
         <tr>
             
-                <td class="name"><code>text</code></td>
+                <td class="name">text</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">string</span>
+
 
 
             
@@ -1118,13 +1162,14 @@ consist of more than one word; for example, <strong><code>India</code></strong> 
 
         <tr>
             
-                <td class="name"><code>entityType</code></td>
+                <td class="name">entityType</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">string</span>
+
 
 
             
@@ -1150,13 +1195,14 @@ consist of more than one word; for example, <strong><code>India</code></strong> 
 
         <tr>
             
-                <td class="name"><code>uid</code></td>
+                <td class="name">uid</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">string</span>
+
 
 
             
@@ -1187,13 +1233,14 @@ or <code>'united_kingdom'.</code></p></td>
 
         <tr>
             
-                <td class="name"><code>value</code></td>
+                <td class="name">value</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">string</span>
+
 
 
             
@@ -1246,7 +1293,7 @@ character. For example, <code>'india'</code> or <code>'united kingdom'.</code></
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -1264,6 +1311,7 @@ character. For example, <code>'india'</code> or <code>'united kingdom'.</code></
 <span class="param-type">number</span>
 
 
+
     </dd>
 </dl>
 
@@ -1271,12 +1319,17 @@ character. For example, <code>'india'</code> or <code>'united kingdom'.</code></
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="recognize"><span class="type-signature"></span>recognize<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;object>}</span></h4>
+    <h4 class="name" id="recognize">
+      recognize
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>recognize<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;object>}</span></div
 
     
 
@@ -1285,12 +1338,12 @@ character. For example, <code>'india'</code> or <code>'united kingdom'.</code></
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="wink-ner.js.html">wink-ner.js</a>, <a href="wink-ner.js.html#line480">line 480</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -1371,7 +1424,7 @@ myNER.recognize( tokens );
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -1396,13 +1449,14 @@ myNER.recognize( tokens );
 
         <tr>
             
-                <td class="name"><code>tokens</code></td>
+                <td class="name">tokens</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;object></span>
+
 
 
             
@@ -1436,7 +1490,7 @@ it's standards.</p></td>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -1454,6 +1508,7 @@ it's standards.</p></td>
 <span class="param-type">Array.&lt;object></span>
 
 
+
     </dd>
 </dl>
 
@@ -1461,12 +1516,17 @@ it's standards.</p></td>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="reset"><span class="type-signature"></span>reset<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="reset">
+      reset
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>reset<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></div
 
     
 
@@ -1475,12 +1535,12 @@ it's standards.</p></td>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="wink-ner.js.html">wink-ner.js</a>, <a href="wink-ner.js.html#line607">line 607</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -1552,7 +1612,7 @@ by setting the configuration to default.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -1570,12 +1630,15 @@ by setting the configuration to default.</p>
 <span class="param-type">boolean</span>
 
 
+
     </dd>
 </dl>
 
     
 
 
+
+<hr>
 
         
     
@@ -1591,18 +1654,40 @@ by setting the configuration to default.</p>
 
 
 
-    
+        
+    </div>
+  </div>
+
+  <nav  id="side-nav">
+      
+      <h2><a href="index.html">Summary</a></h2><h2><a href="https://github.com/winkjs/wink-ner" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="NER.html">NER</a><ul class='methods'><li data-type='method'><a href="NER.html#defineConfig">defineConfig</a></li><li data-type='method'><a href="NER.html#exportJSON">exportJSON</a></li><li data-type='method'><a href="NER.html#importJSON">importJSON</a></li><li data-type='method'><a href="NER.html#learn">learn</a></li><li data-type='method'><a href="NER.html#recognize">recognize</a></li><li data-type='method'><a href="NER.html#reset">reset</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#ner">ner</a></li></ul>
+  </nav>
 </div>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Apr 16 2019 17:11:11 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Nov 23 2019 14:51:51 GMT+0530 (IST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
 <script src="scripts/linenumber.js"></script>
 
 
+
+<script src="https://embed.runkit.com"></script>
+<script type="text/javascript">
+  var els = document.getElementsByClassName("runkit");
+
+  Array.prototype.forEach.call(els, function(el) {
+    // Do stuff here
+    var source = el.innerHTML;
+    el.innerHTML = '';
+    var n = RunKit.createNotebook( {
+      element: el,
+      source: source
+    } );
+  });
+</script>
 </body>
 </html>
