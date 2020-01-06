@@ -19,7 +19,7 @@ Use [npm](https://www.npmjs.com/package/wink-ner) to install:
 ```javascript
 // Load wink ner.
 var ner = require( 'wink-ner' );
-// Create your instance of wink ner & use defualt config.
+// Create your instance of wink ner & use default config.
 var myNER = ner();
 // Define training data.
 var trainingData = [
