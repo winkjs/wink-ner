@@ -48,7 +48,9 @@ describe( 'simple training & detection', function () {
     { text: 'raw banana', entityType: 'veg' },
     { text: 'banana', entityType: 'fruit' },
     { text: 'raw apple', entityType: 'fruit' },
-    { txt: 'aa', entity: 'cc' }
+    { text: 'F 16', entityType: 'fighter' },
+    { text: '42', entityType: 'universal_answer' },
+    { text: '30 +', entityType: 'random' }
   ];
   var tokens = [
     { value: 'get', tag: 'word' },
@@ -56,7 +58,13 @@ describe( 'simple training & detection', function () {
     { value: 'some', tag: 'word' },
     { value: 'raw', tag: 'word' },
     { value: 'bananas', tag: 'word' },
-    { value: 'bananas', tag: 'word' }
+    { value: 'bananas', tag: 'word' },
+    { value: 'F', tag: 'word' },
+    { value: '-', tag: 'punctuation' },
+    { value: '16', tag: 'number' },
+    { value: '42', tag: 'number' },
+    { value: '30', tag: 'number' },
+    { value: '+', tag: 'symbol' },
   ];
 
   var result = [
@@ -64,10 +72,13 @@ describe( 'simple training & detection', function () {
     { value: 'me', tag: 'word' },
     { value: 'some', tag: 'word' },
     { entityType: 'veg', originalSeq: [ 'raw', 'bananas' ], uid: 'raw_banana', value: 'raw banana', tag: 'word' },
-    { value: 'banana', tag: 'word', originalSeq: [ 'bananas' ], uid: 'banana', entityType: 'fruit' }
+    { value: 'banana', tag: 'word', originalSeq: [ 'bananas' ], uid: 'banana', entityType: 'fruit' },
+    { value: 'f 16', tag: 'word', originalSeq: [ 'F', '-', '16' ], uid: 'f_16', entityType: 'fighter' },
+    { value: '42', tag: 'number', originalSeq: [ '42' ], uid: '42', entityType: 'universal_answer' },
+    { value: '30 +', tag: 'word', originalSeq: [ '30', '+' ], uid: '30_+', entityType: 'random' }
 ];
   it( 'basic training with 2 entities', function () {
-    expect( n.learn( trainingData ) ).to.equal( 3 );
+    expect( n.learn( trainingData ) ).to.equal( 6 );
   } );
 
   it( 'detect *banana* & *raw banana* as entities', function () {
