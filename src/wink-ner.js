@@ -1,7 +1,7 @@
 //     wink-ner
 //     Language agnostic named entity recognizer
 //
-//     Copyright (C) 2017-19  GRAYPE Systems Private Limited
+//     Copyright (C) 2017-20  GRAYPE Systems Private Limited
 //
 //     This file is part of “wink-ner”.
 //
