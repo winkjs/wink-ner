@@ -50,7 +50,9 @@ describe( 'simple training & detection', function () {
     { text: 'raw apple', entityType: 'fruit' },
     { text: 'F 16', entityType: 'fighter' },
     { text: '42', entityType: 'universal_answer' },
-    { text: '30 +', entityType: 'random' }
+    { text: '30 +', entityType: 'random' },
+    // For covering `learn()` code.
+    {}
   ];
   var tokens = [
     { value: 'get', tag: 'word' },

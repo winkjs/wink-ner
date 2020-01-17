@@ -405,44 +405,35 @@ var ner = function () {
       value = tokens[ k ].value;
       tag = tokens[ k ].tag;
       // If ignorable then simply follow the next iteration, after saving the
-      // current value into the original sequence of tokens; otherwise if
-      // token is a word or number save it in words else just reset & break!
+      // current value into the original sequence of tokens; otherwise
+      // save it in words else just reset & break!
       if ( isIgnorable( value, tag ) ) {
         originalSeq.push( value );
-      } else if ( !cfg.tagsToIgnore || !cfg.tagsToIgnore[ tag ] ) {
-               // `word` and `number` tags form entities, include them in `words`,
-               // while ensuring `words` receive normalized value.
-               words.push( normalize( value ) );
-               // Here `value` must go **as is**.
-               originalSeq.push( value );
-             } else {
-               // Can not be ignored: reset & break!
-               words = [];
-               originalSeq = [];
-               break;
-             }
+      } else {
+         // Ensure `words` receive normalized value.
+         words.push( normalize( value ) );
+         // Here `value` must go **as is**.
+         originalSeq.push( value );
+      }
     } // for ( k = i... )
 
-    if ( words.length > 0 ) {
+    entity = multiWordEntities[ words.join( ' ' ) ];
+    if ( !entity ) {
+      words.push( singularize( words.pop() ) );
       entity = multiWordEntities[ words.join( ' ' ) ];
-      if ( !entity ) {
-        words.push( singularize( words.pop() ) );
+    }
 
-        entity = multiWordEntities[ words.join( ' ' ) ];
-      }
-
-      if ( entity ) {
-        // Copy the entity into the merged token.
-        mergedToken = copyKVPs( Object.create( null ), entity );
-        // Save original sequence of tokens that were detected as an entity.
-        mergedToken.originalSeq = originalSeq;
-        // If id is missing, create id by joining `words`.
-        mergedToken.uid = entity.uid || words.join( '_' );
-        // If value was not defined, default to words.
-        mergedToken.value = mergedToken.value || words.join( ' ' );
-        // move the next token's index — `nti` to `k`.
-        return { token: mergedToken, nti: k };
-      }
+    if ( entity ) {
+      // Copy the entity into the merged token.
+      mergedToken = copyKVPs( Object.create( null ), entity );
+      // Save original sequence of tokens that were detected as an entity.
+      mergedToken.originalSeq = originalSeq;
+      // If id is missing, create id by joining `words`.
+      mergedToken.uid = entity.uid || words.join( '_' );
+      // If value was not defined, default to words.
+      mergedToken.value = mergedToken.value || words.join( ' ' );
+      // move the next token's index — `nti` to `k`.
+      return { token: mergedToken, nti: k };
     }
 
     // No success, do not move the next token's index — `nti`.
@@ -715,3 +706,12 @@ var ner = function () {
 };
 
 module.exports = ner;
+var x = ner();
+var t = require( 'wink-tokenizer' )().tokenize;
+x.learn(
+  [
+    { text: 'f - 16', entityType: 'plane' }
+  ]
+);
+
+x.recognize( t( '-p' ) );
