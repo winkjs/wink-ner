@@ -34,10 +34,6 @@
   ((window.gitter = {}).chat = {}).options = {
     room: 'winkjs/Lobby'
   };
-  window.onload = function () {
-      document.querySelector('.gitter-open-chat-button').innerText = 'Need help?'
-      document.querySelector('.gitter-open-chat-button').style.display = 'block';
-  }
 </script>
 <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
@@ -72,13 +68,7 @@ body {
 .navbar a {
   color: #fff;
   line-height: 60px;
-  margin-left: 0;
-}
-
-.navbar a.navbar-brand {
   margin-left: 20px;
-  display: block;
-  min-width: 40px;
 }
 
 .navbar-right {
@@ -97,6 +87,10 @@ body {
 }
 
 /* Override docdash */
+nav {
+  top: 80px;
+}
+
 #main {
   margin-top: 30px;
 }
@@ -104,7 +98,6 @@ body {
 /* Gitter */
 .gitter-open-chat-button {
   background: #6C307D;
-  display: none;
 }
 
 .gitter-open-chat-button:hover {
@@ -125,16 +118,6 @@ window.addEventListener('DOMContentLoaded', function () {
       window.scrollTo( 0, (window.pageYOffset || document.documentElement.scrollTop) - 72);
     }, 0)
   }
-
-  document.getElementById('toc-button').addEventListener('click', function () {
-      if (document.getElementById('side-nav').className === '') {
-        document.getElementById('side-nav').className = 'is-open';
-        document.getElementById('toc-button-img').setAttribute('src','./close.svg');
-      } else {
-        document.getElementById('side-nav').className = '';
-        document.getElementById('toc-button-img').setAttribute('src','./menu.svg');
-      }
-  })
 });
 
 window.addEventListener( 'hashchange', function (e) {
@@ -156,32 +139,36 @@ function openMember() {
       <div class="navbar-header">
         <a href="https://winkjs.org/" title="wink" class="navbar-brand">
           <img src="https://winkjs.org/images/logo.svg">
-          <span>wink</span>
+          wink
         </a>
       </div>
-      <div class="sausage-links">
-        <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="main-nav">
-          <li><a href="https://winkjs.org/packages.html" class="">Packages</a></li>
-          <li><a href="https://winkjs.org/showcase.html" class="">Showcase</a></li>
-          <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li>
-          <li><a href="http://github.com/winkjs">Github</a></li>
-          <li><a href="https://winkjs.org/about.html" class="">About</a></li>
-        </div>
-      </nav>
+      <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="main-nav">
+        <li><a href="https://winkjs.org/packages.html" class="">Packages</a></li>
+        <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li>
+        <li><a href="http://github.com/winkjs">Github</a></li>
+        <li><a href="https://twitter.com/winkjs_org">Twitter</a></li>
+        <li><a href="https://winkjs.org/about.html" class="">About</a></li>
+      </ul>
     </div>
 </header>
 
-<div id="toc-button">
-  <img src="./menu.svg" alt="" id="toc-button-img">
-</div>
 
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
 
-<div class="content-container">
-  <div class="main-container">
-    <div id="main">
-        
+<label for="nav-trigger" class="overlay"></label>
 
-        
+<nav >
+    
+    <h2><a href="index.html">Summary</a></h2><h2><a href="https://github.com/winkjs/wink-ner" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="NER.html">NER</a><ul class='methods'><li data-type='method'><a href="NER.html#defineConfig">defineConfig</a></li><li data-type='method'><a href="NER.html#exportJSON">exportJSON</a></li><li data-type='method'><a href="NER.html#importJSON">importJSON</a></li><li data-type='method'><a href="NER.html#learn">learn</a></li><li data-type='method'><a href="NER.html#recognize">recognize</a></li><li data-type='method'><a href="NER.html#reset">reset</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#ner">ner</a></li></ul>
+</nav>
+
+<div id="main">
+    
+
+    
 
 
 
@@ -211,7 +198,7 @@ function openMember() {
 <h3>Installation</h3><p>Use <a href="https://www.npmjs.com/package/wink-ner">npm</a> to install:</p>
 <pre class="prettyprint source"><code>npm install wink-ner --save</code></pre><h3>Getting Started</h3><h4>Named Entity Recognition</h4><pre class="prettyprint source lang-javascript"><code>// Load wink ner.
 var ner = require( 'wink-ner' );
-// Create your instance of wink ner & use defualt config.
+// Create your instance of wink ner & use default config.
 var myNER = ner();
 // Define training data.
 var trainingData = [
@@ -280,40 +267,18 @@ console.log( tokens );
 
 
 
-        
-    </div>
-  </div>
-
-  <nav  id="side-nav">
-      
-      <h2><a href="index.html">Summary</a></h2><h2><a href="https://github.com/winkjs/wink-ner" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="NER.html">NER</a><ul class='methods'><li data-type='method'><a href="NER.html#defineConfig">defineConfig</a></li><li data-type='method'><a href="NER.html#exportJSON">exportJSON</a></li><li data-type='method'><a href="NER.html#importJSON">importJSON</a></li><li data-type='method'><a href="NER.html#learn">learn</a></li><li data-type='method'><a href="NER.html#recognize">recognize</a></li><li data-type='method'><a href="NER.html#reset">reset</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#ner">ner</a></li></ul>
-  </nav>
+    
 </div>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Nov 23 2019 14:51:51 GMT+0530 (IST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jan 17 2020 16:08:26 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
 <script src="scripts/linenumber.js"></script>
 
 
-
-<script src="https://embed.runkit.com"></script>
-<script type="text/javascript">
-  var els = document.getElementsByClassName("runkit");
-
-  Array.prototype.forEach.call(els, function(el) {
-    // Do stuff here
-    var source = el.innerHTML;
-    el.innerHTML = '';
-    var n = RunKit.createNotebook( {
-      element: el,
-      source: source
-    } );
-  });
-</script>
 </body>
 </html>

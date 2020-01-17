@@ -138,6 +138,7 @@ var ner = function () {
     validTags.time = true;
     validTags.url = true;
     validTags.unknown = true;
+    validTags.symbol = true;
 
     cfg.tagsToIgnore = Object.create( null );
     cfg.valuesToIgnore = Object.create( null );
@@ -408,7 +409,7 @@ var ner = function () {
       // token is a word or number save it in words else just reset & break!
       if ( isIgnorable( value, tag ) ) {
         originalSeq.push( value );
-      } else if ( tag === 'word' || tag === 'number' ) {
+      } else if ( !cfg.tagsToIgnore || !cfg.tagsToIgnore[ tag ] ) {
                // `word` and `number` tags form entities, include them in `words`,
                // while ensuring `words` receive normalized value.
                words.push( normalize( value ) );
@@ -524,7 +525,7 @@ var ner = function () {
     var action, candidate;
     for ( var i = 0, imax = tokens.length; i < imax; i += 1 ) {
       t = tokens[ i ];
-      if ( t.tag === 'word' ) {
+      if ( !cfg.tagsToIgnore || !cfg.tagsToIgnore[ t.tag ] ) {
         // Look up for the word; if not found try its base form.
         let value = t.value;
         value = normalize( value );
